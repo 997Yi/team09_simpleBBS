@@ -20,6 +20,7 @@
         <servlet-api.version>4.0.1</servlet-api.version>
         <jsp-api.version>2.0</jsp-api.version>
         <jstl.version>1.2</jstl.version>
+        <druid-version>1.1.21</druid-version>
     </properties>
 
 
@@ -39,6 +40,12 @@
             <groupId>jstl</groupId>
             <artifactId>jstl</artifactId>
             <version>${jstl.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid-version}</version>
         </dependency>
     </dependencies>
 
