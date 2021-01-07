@@ -4,6 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-    hello motherfucker
+    hello motherfucker!
 </body>
 </html>
