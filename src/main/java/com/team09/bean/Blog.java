@@ -19,16 +19,38 @@ public class Blog {
 
     private String context;
 
+    private boolean isTop;
+
+    private boolean isQuintessence;
+
     public Blog() {
     }
 
-    public Blog(String id, String title, String keyWords, Date time, long clicks, String context) {
+    public Blog(String id, String title, String keyWords, Date time, long clicks, String context, boolean isTop, boolean isQuintessence) {
         this.id = id;
         this.title = title;
         this.keyWords = keyWords;
         this.time = time;
         this.clicks = clicks;
         this.context = context;
+        this.isTop = isTop;
+        this.isQuintessence = isQuintessence;
+    }
+
+    public boolean isTop() {
+        return isTop;
+    }
+
+    public void setTop(boolean top) {
+        isTop = top;
+    }
+
+    public boolean isQuintessence() {
+        return isQuintessence;
+    }
+
+    public void setQuintessence(boolean quintessence) {
+        isQuintessence = quintessence;
     }
 
     public String getId() {
