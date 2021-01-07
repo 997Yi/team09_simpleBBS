@@ -50,7 +50,7 @@ public interface BlogDao {
      * @return
      * @throws SQLException
      */
-    public boolean deleteBlogs(Blog blog) throws SQLException;
+    public boolean deleteBlogs(User user, Blog blog) throws SQLException;
 
 
     /**

@@ -15,7 +15,7 @@ public class Blog {
 
     private Date time;
 
-    private long clicks;
+    private int clicks;
 
     private String context;
 
@@ -26,7 +26,18 @@ public class Blog {
     public Blog() {
     }
 
-    public Blog(String id, String title, String keyWords, Date time, long clicks, String context, boolean isTop, boolean isQuintessence) {
+    public Blog(String title, String keyWords, Date time, int clicks, String context, boolean isTop, boolean isQuintessence) {
+        this.title = title;
+        this.keyWords = keyWords;
+        this.time = time;
+        this.clicks = clicks;
+        this.context = context;
+        this.isTop = isTop;
+        this.isQuintessence = isQuintessence;
+    }
+
+
+    public Blog(String id, String title, String keyWords, Date time, int clicks, String context, boolean isTop, boolean isQuintessence) {
         this.id = id;
         this.title = title;
         this.keyWords = keyWords;
@@ -85,11 +96,11 @@ public class Blog {
         this.time = time;
     }
 
-    public long getClicks() {
+    public int getClicks() {
         return clicks;
     }
 
-    public void setClicks(long clicks) {
+    public void setClicks(int clicks) {
         this.clicks = clicks;
     }
 

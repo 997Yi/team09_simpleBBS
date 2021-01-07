@@ -18,6 +18,13 @@ public class User {
     public User() {
     }
 
+    public User(String username, String password, String imgUrl, String profile) {
+        this.username = username;
+        this.password = password;
+        this.imgUrl = imgUrl;
+        this.profile = profile;
+    }
+
     public User(String id, String username, String password, String imgUrl, String profile) {
         this.id = id;
         this.username = username;
