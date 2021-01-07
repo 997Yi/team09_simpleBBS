@@ -4,6 +4,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.sql.Connection;
 import java.util.Properties;
 
 
