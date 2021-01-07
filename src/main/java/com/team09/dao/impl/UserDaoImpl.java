@@ -80,7 +80,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
             rs = pstmt.executeQuery();
             if (rs.next())
                 return false;
-
+            pstmt.close();
             pstmt = connection.prepareStatement("insert into user_tb values(UUID(),?,?,?,?);");
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getPassword());
@@ -133,6 +133,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
             rs = pstmt.executeQuery();
             if (rs.next())
                 return false;
+            pstmt.close();
             pstmt = connection.prepareStatement("update user_tb set user_name=?,user_password=?,user_img=?,user_profile=? where user_id=?;");
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getPassword());
