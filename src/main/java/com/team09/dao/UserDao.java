@@ -52,8 +52,8 @@ public interface UserDao {
     /**
      * 修改用户信息
      * @param user
-     * @return 原用户信息
+     * @return
      * @throws SQLException
      */
-    public User updateUser(User user) throws SQLException;
+    public boolean updateUser(User user) throws SQLException;
 }

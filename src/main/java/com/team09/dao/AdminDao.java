@@ -32,7 +32,7 @@ public interface AdminDao {
      * @return
      * @throws SQLException
      */
-    public Admin updateAdmin(Admin admin) throws SQLException;
+    public boolean updateAdmin(Admin admin) throws SQLException;
 
     /**
      * 添加管理员

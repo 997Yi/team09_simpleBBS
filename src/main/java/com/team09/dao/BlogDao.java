@@ -59,5 +59,5 @@ public interface BlogDao {
      * @return
      * @throws SQLException
      */
-    public Blog updateBlogs(Blog blog) throws SQLException;
+    public boolean updateBlogs(Blog blog) throws SQLException;
 }
