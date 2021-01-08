@@ -35,5 +35,4 @@ public class JdbcUtil {
     public static void close(Connection connection, Statement statement) throws SQLException {
         close(connection, statement, null);
     }
-
 }
