@@ -2,8 +2,6 @@ package com.team09.controller.user;
 
 import com.team09.bean.Blog;
 import com.team09.bean.User;
-import com.team09.dao.BlogDao;
-import com.team09.dao.impl.BlogDaoImpl;
 import com.team09.service.BlogService;
 import com.team09.service.impl.BlogServiceImpl;
 import com.team09.util.FileUtil;
@@ -20,6 +18,7 @@ import java.util.Date;
 /**
  * @author team09
  *  发表博客
+ *  表单参数  title content keywords
  */
 
 @WebServlet("/user/postBlog")
