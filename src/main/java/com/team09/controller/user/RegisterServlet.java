@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet("/RegisterServlet")
+@WebServlet("/user/register")
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //TODO jsp页面提交数据时统一数据名称
@@ -34,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
         //传入的imgUrl和profile可以为空 存入数据库时存入null
 
         //2.判断验证码是否正确(从session中获取验证码)
-        String rightCode = (String) request.getSession(true).getAttribute("checkcode");
+        String rightCode = (String) request.getSession(true).getAttribute("validCode");
         if (rightCode.equals(verCode)) {
             //3.调用service层 将数据存入数据库
 
