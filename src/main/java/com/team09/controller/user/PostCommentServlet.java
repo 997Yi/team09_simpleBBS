@@ -26,13 +26,12 @@ public class PostCommentServlet extends HttpServlet {
         String userId = ((User) request.getSession().getAttribute("userInfo")).getId();
         //获取评论等其他信息并将其创建为comment对象
         String content = request.getParameter("content");
-        String status = request.getParameter("status");
         //TODO 时间格式待统一
         Date date = new Date();
 
         //调用service层将评论存储
         CommentService commentService = CommentServiceImpl.getInstance();
-        commentService.addComment(new Comment(content, status, date, userId, blogId));
+        commentService.addComment(new Comment(content, "正常", date, userId, blogId));
 
         //TODO 完成后返回到博客评论区
         response.sendRedirect("");

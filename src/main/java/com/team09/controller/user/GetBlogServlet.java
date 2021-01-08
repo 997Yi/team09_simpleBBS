@@ -1,8 +1,11 @@
 package com.team09.controller.user;
 
 import com.team09.bean.Blog;
+import com.team09.bean.Comment;
 import com.team09.service.BlogService;
+import com.team09.service.CommentService;
 import com.team09.service.impl.BlogServiceImpl;
+import com.team09.service.impl.CommentServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.List;
 
 /**
  * 根据id获取博客
@@ -17,10 +21,12 @@ import java.io.*;
  * 博客具体内容存于request的blogContxt
  * 获取成功后跳转至具体博客显示页面
  * 获取失败跳转至原来位置
+ *
+ * 同时获取评论
  */
 
 @WebServlet("/user/lookBlog")
-public class LookBlogServlet extends HttpServlet {
+public class GetBlogServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         //获取需要详细浏览的帖子id
@@ -42,6 +48,13 @@ public class LookBlogServlet extends HttpServlet {
                 buffer.append(line);
             }
             request.setAttribute("blogContext", buffer);
+
+            //进入service层根据博客id获取用户评论
+            CommentService commentService = CommentServiceImpl.getInstance();
+            List<Comment> comment = commentService.getCommentsByBlogId(blogId);
+
+            //返回至查看评论区页面
+            request.setAttribute("blogComment",comment);
 
             //TODO 跳转至显示详细帖子内容页面
             request.getRequestDispatcher("   ").forward(request, response);
