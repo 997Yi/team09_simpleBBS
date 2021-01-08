@@ -22,6 +22,7 @@ public class AdminDaoImpl extends BaseDao implements AdminDao {
 
 
 
+    @Override
     public Admin getAdminById(String id) throws SQLException {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -49,6 +50,7 @@ public class AdminDaoImpl extends BaseDao implements AdminDao {
 
     }
 
+    @Override
     public Admin getAdminByName(String name) throws SQLException  {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -75,6 +77,7 @@ public class AdminDaoImpl extends BaseDao implements AdminDao {
         }
     }
 
+    @Override
     public boolean updateAdmin(Admin admin) throws SQLException{
         Connection connection = null;
         PreparedStatement statement = null;
@@ -93,6 +96,7 @@ public class AdminDaoImpl extends BaseDao implements AdminDao {
         }
     }
 
+    @Override
     public boolean addAdmin(Admin admin) throws SQLException{
         Connection connection = null;
         PreparedStatement statement = null;
@@ -110,6 +114,7 @@ public class AdminDaoImpl extends BaseDao implements AdminDao {
         }
     }
 
+    @Override
     public boolean deleteAdminById(String id) throws SQLException{
         Connection connection = null;
         PreparedStatement statement = null;
@@ -126,6 +131,7 @@ public class AdminDaoImpl extends BaseDao implements AdminDao {
         }
     }
 
+    @Override
     public boolean deleteAdminByName(String name) throws SQLException{
         Connection connection = null;
         PreparedStatement statement = null;
