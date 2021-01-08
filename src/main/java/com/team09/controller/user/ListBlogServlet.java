@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+
 /**
  * 查看全部博客
  * 返回数据存储于session中名为bolgs
@@ -25,13 +26,13 @@ public class ListBlogServlet extends HttpServlet {
         List<Blog> blogs = blogService.getAllBlogs();
 
         //将所有博客返回给前端 存储在session中
-        request.getSession().setAttribute("blogs",blogs);
+        request.getSession().setAttribute("blogs", blogs);
 
         //TODO 重定向至显示所有博客界面
         response.sendRedirect("");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        this.doPost(request, response);
     }
 }

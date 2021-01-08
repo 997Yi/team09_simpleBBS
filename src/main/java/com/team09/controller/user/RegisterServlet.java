@@ -35,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
         //结果
         boolean result = false;
         //TODO 默认跳转链接为注册界面
-        String url = "";
+        String url = "  ";
 
         //1.判断数据数据格式是否正确
         //传入的imgUrl和profile可以为空 存入数据库时存入null
@@ -62,6 +62,6 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+        this.doPost(request, response);
     }
 }

@@ -26,7 +26,7 @@ public class ModifyUserServlet extends HttpServlet {
 
         //获取service或dao层是否成功然后返回给服务端
         UserService userService = UserServiceImpl.getInstance();
-        boolean result = userService.updateUser(new User(username,passwd,imgUrl,profile));
+        boolean result = userService.updateUser(new User(username, passwd, imgUrl, profile));
 
         //TODO 不管修改是否成功都直接跳转到用户信息界面
         response.sendRedirect("    ");
