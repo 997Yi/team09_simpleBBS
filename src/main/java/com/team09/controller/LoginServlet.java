@@ -17,9 +17,10 @@ import java.io.IOException;
 
 /**
  * @author team09
+ *  参数 username password validCode
  */
 
-@WebServlet("/Login")
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
     private UserService userService = UserServiceImpl.getInstance();
@@ -44,33 +45,52 @@ public class LoginServlet extends HttpServlet {
         String realCode = (String) session.getAttribute("validCode");
         session.removeAttribute("validCode");
 
+        System.out.println(validCode + " " + realCode);
         if(!validCode.toLowerCase().equals(realCode)){
             //验证码有误
             session.setAttribute("msg", "验证码错误");
-            //TODO 返回注册页面
+
+            //TODO 跳转到登陆页面
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
             return;
         }
 
 
-        User userInfo = userService.getUserByName(username);
+        Object userInfo = userService.getUserByName(username);
+        if(userInfo == null){
+            userInfo = adminService.getAdminByName(username);
+        }
 
         if(userInfo == null){
             //账号不存在
 
             session.setAttribute("msg", "该账号不存在，检查后重试");
-            //TODO 返回注册页面
+            //TODO 跳转到登陆页面
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
             return;
-        }else if(!userInfo.getPassword().equals(password)){
-            //账号密码不匹配
-
-            session.setAttribute("msg", "账号密码不匹配，检查后重试");
-            //TODO 返回注册页面
-            return;
-        }else{
-            //登陆成功
-            session.setAttribute("userInfo", userInfo);
-            //TODO 跳转到博客首页
         }
 
+        if(userInfo instanceof User){
+            if(((User) userInfo).getPassword().equals(password)){
+                //登陆成功
+                session.setAttribute("userInfo", userInfo);
+                //TODO 跳转到博客首页
+
+                return;
+            }
+        }else{
+            if(((Admin) userInfo).getPassword().equals(password)){
+                //登陆成功
+                session.setAttribute("adminInfo", userInfo);
+                //TODO 跳转到博客首页
+
+                return;
+            }
+        }
+
+        //登陆失败
+        session.setAttribute("msg", "账号密码不匹配，请重试");
+        //TODO 跳转到登陆页面
+        req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 }
