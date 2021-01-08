@@ -3,12 +3,21 @@ package com.team09.service.impl;
 import com.team09.bean.Comment;
 import com.team09.dao.CommentDao;
 import com.team09.dao.impl.CommentDaoImpl;
+import com.team09.service.AdminService;
 import com.team09.service.CommentService;
 
 import java.sql.SQLException;
 import java.util.List;
 
 public class CommentServiceImpl implements CommentService {
+
+    private static  CommentService  commentService = new  CommentServiceImpl();
+
+    private  CommentServiceImpl(){}
+
+    public static  CommentService getInstance(){
+        return  commentService;
+    }
 
     CommentDao commentDao = CommentDaoImpl.getInstance();
 

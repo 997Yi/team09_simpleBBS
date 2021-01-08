@@ -9,6 +9,14 @@ import java.sql.SQLException;
 
 public class AdminServiceImpl implements AdminService {
 
+    private static AdminService adminService = new AdminServiceImpl();
+
+    private AdminServiceImpl(){}
+
+    public static AdminService getInstance(){
+        return adminService;
+    }
+
     private static AdminDao adminDao = AdminDaoImpl.getInstance();
 
     @Override

@@ -9,6 +9,14 @@ import java.sql.SQLException;
 
 public class UserServiceImpl implements UserService {
 
+    private static UserService userService = new  UserServiceImpl();
+
+    private  UserServiceImpl(){}
+
+    public static  UserService getInstance(){
+        return  userService;
+    }
+
     private static UserDao userDao = UserDaoImpl.getInstance();
 
     @Override
