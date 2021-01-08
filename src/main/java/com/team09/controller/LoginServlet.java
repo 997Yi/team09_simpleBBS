@@ -19,8 +19,8 @@ import java.io.IOException;
  * @author team09
  */
 
-@WebServlet("/userLogin")
-public class UserLoginServlet extends HttpServlet {
+@WebServlet("/Login")
+public class LoginServlet extends HttpServlet {
 
     private UserService userService = UserServiceImpl.getInstance();
     private AdminService adminService = AdminServiceImpl.getInstance();

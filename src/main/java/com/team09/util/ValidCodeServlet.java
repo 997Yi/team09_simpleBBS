@@ -1,4 +1,4 @@
-package com.team09.controller;
+package com.team09.util;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
