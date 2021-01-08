@@ -20,7 +20,7 @@ import java.util.Date;
  *  需要参数 username passwd validCode
  *  可选参数 imgUrl profile
  */
-@WebServlet("/register")
+@WebServlet("/user/register")
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
