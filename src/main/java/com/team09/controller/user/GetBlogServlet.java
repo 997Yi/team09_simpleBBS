@@ -2,10 +2,13 @@ package com.team09.controller.user;
 
 import com.team09.bean.Blog;
 import com.team09.bean.Comment;
+import com.team09.bean.User;
 import com.team09.service.BlogService;
 import com.team09.service.CommentService;
+import com.team09.service.UserService;
 import com.team09.service.impl.BlogServiceImpl;
 import com.team09.service.impl.CommentServiceImpl;
+import com.team09.service.impl.UserServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +16,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 根据id获取博客
@@ -36,7 +41,7 @@ public class GetBlogServlet extends HttpServlet {
         BlogService blogService = BlogServiceImpl.getInstance();
         Blog blog = blogService.getBlogById(blogId);
         if (blog != null) {
-            //将详细信息返回 使用request
+            //将博客详细信息返回 使用request
             request.setAttribute("blog", blog);
 
             //将帖子具体内容返回
@@ -47,14 +52,23 @@ public class GetBlogServlet extends HttpServlet {
             while ((line = in.readLine()) != null) {
                 buffer.append(line);
             }
+
+            //将博客内容返回 使用request
             request.setAttribute("blogContext", buffer);
 
             //进入service层根据博客id获取用户评论
             CommentService commentService = CommentServiceImpl.getInstance();
             List<Comment> comment = commentService.getCommentsByBlogId(blogId);
 
-            //返回至查看评论区页面
-            request.setAttribute("blogComment",comment);
+            //进入service层获取用户信息
+            Map<Comment,User> map = new HashMap<Comment,User>();
+            UserService userService = UserServiceImpl.getInstance();
+            for(Comment c: comment){
+                map.put(c,userService.getUserById(c.getUserId()));
+            }
+
+            //将博客评论和对应用户信息返回 使用request
+            request.setAttribute("blogComment",map);
 
             //TODO 跳转至显示详细帖子内容页面
             request.getRequestDispatcher("   ").forward(request, response);
