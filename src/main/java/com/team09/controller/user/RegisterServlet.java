@@ -1,6 +1,6 @@
 package com.team09.controller.user;
 /**
- * 用户注册servlet
+ *
  */
 
 import com.team09.bean.User;
@@ -14,14 +14,21 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@WebServlet("/user/register")
+/**
+ * @author team09
+ * 用户注册servlet
+ *  需要参数 username passwd validCode
+ *  可选参数 imgUrl profile
+ */
+@WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //TODO jsp页面提交数据时统一数据名称
         //获取表单数据
         String username = request.getParameter("username");
         String passwd = request.getParameter("passwd");
-        String verCode = request.getParameter("vercode");
+        String verCode = request.getParameter("validCode");
         String imgUrl = request.getParameter("imgUrl");
         String profile = request.getParameter("profile");
 
@@ -34,7 +41,10 @@ public class RegisterServlet extends HttpServlet {
         //传入的imgUrl和profile可以为空 存入数据库时存入null
 
         //2.判断验证码是否正确(从session中获取验证码)
-        String rightCode = (String) request.getSession(true).getAttribute("validCode");
+        HttpSession session = request.getSession();
+        String rightCode = (String) session.getAttribute("validCode");
+        session.removeAttribute("validCode");
+
         if (rightCode.equals(verCode)) {
             //3.调用service层 将数据存入数据库
 
@@ -50,6 +60,7 @@ public class RegisterServlet extends HttpServlet {
         response.sendRedirect(url);
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
     }

@@ -2,3 +2,5 @@
 /target/
 /.idea/
 /src/test/
+/src/main/webapp/layui/
+/src/main/webapp/view/
