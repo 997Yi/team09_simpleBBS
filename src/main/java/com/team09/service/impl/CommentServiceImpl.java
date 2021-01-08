@@ -24,6 +24,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public boolean addComment(Comment comment) {
         try {
+            if (comment == null){
+                return false;
+            }
             return  commentDao.addComment(comment);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -34,6 +37,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment getCommentById(String commentId) {
         try {
+            if (commentId == null || commentId.isEmpty()){
+                return null;
+            }
             return  commentDao.getCommentById(commentId);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -44,6 +50,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> getCommentsByUserId(String userId) {
         try {
+            if (userId == null || userId.isEmpty()){
+                return null;
+            }
             return  commentDao.getCommentsByUserId(userId);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -54,6 +63,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> getCommentsByBlogId(String blogId) {
         try {
+            if (blogId == null || blogId.isEmpty()){
+                return null;
+            }
             return  commentDao.getCommentsByBlogId(blogId);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,6 +76,9 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public boolean deleteComment(String commentId) {
         try {
+            if (commentId == null || commentId.isEmpty()){
+                return false;
+            }
             return  commentDao.deleteComment(commentId);
         } catch (SQLException e) {
             e.printStackTrace();
