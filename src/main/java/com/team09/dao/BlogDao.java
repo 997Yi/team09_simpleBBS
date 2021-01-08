@@ -37,12 +37,12 @@ public interface BlogDao {
 
     /**
      * 创建新的博客（需要操作blog_tb和user_blog_tb）
-     * @param user
+     * @param userId
      * @param blog
      * @return
      * @throws SQLException
      */
-    public boolean addBlogs(User user, Blog blog) throws SQLException;
+    public boolean addBlogs(String userId, Blog blog) throws SQLException;
 
     /**
      * 删除博客
@@ -50,7 +50,7 @@ public interface BlogDao {
      * @return
      * @throws SQLException
      */
-    public boolean deleteBlogs(User user, Blog blog) throws SQLException;
+    public boolean deleteBlogs(String blogId) throws SQLException;
 
 
     /**

@@ -23,10 +23,12 @@ public class Blog {
 
     private boolean isQuintessence;
 
+    private String userId;
+
     public Blog() {
     }
 
-    public Blog(String title, String keyWords, Date time, int clicks, String context, boolean isTop, boolean isQuintessence) {
+    public Blog(String title, String keyWords, Date time, int clicks, String context, boolean isTop, boolean isQuintessence, String userId) {
         this.title = title;
         this.keyWords = keyWords;
         this.time = time;
@@ -34,20 +36,14 @@ public class Blog {
         this.context = context;
         this.isTop = isTop;
         this.isQuintessence = isQuintessence;
+        this.userId = userId;
     }
 
 
-    public Blog(String id, String title, String keyWords, Date time, int clicks, String context, boolean isTop, boolean isQuintessence) {
+    public Blog(String id, String title, String keyWords, Date time, int clicks, String context, boolean isTop, boolean isQuintessence, String userId) {
+        this(title, keyWords, time, clicks, context, isTop, isQuintessence, userId);
         this.id = id;
-        this.title = title;
-        this.keyWords = keyWords;
-        this.time = time;
-        this.clicks = clicks;
-        this.context = context;
-        this.isTop = isTop;
-        this.isQuintessence = isQuintessence;
     }
-
     public boolean isTop() {
         return isTop;
     }
@@ -110,5 +106,13 @@ public class Blog {
 
     public void setContext(String context) {
         this.context = context;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

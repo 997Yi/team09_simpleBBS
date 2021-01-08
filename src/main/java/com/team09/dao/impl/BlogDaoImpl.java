@@ -23,6 +23,7 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
 
 
 
+    @Override
     public Blog getBlogById(String id) throws SQLException {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -42,7 +43,7 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
                         resultSet.getString("blog_title"), resultSet.getString("blog_keywords"),
                         resultSet.getDate("blog_time"), resultSet.getInt("blog_clicks"),
                         resultSet.getString("blog_content"), resultSet.getInt("top") == 1,
-                        resultSet.getInt("quintessence") == 1);
+                        resultSet.getInt("quintessence") == 1, resultSet.getString("user_id"));
             }
             return blog;
         }finally {
@@ -50,6 +51,7 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
         }
     }
 
+    @Override
     public List<Blog> getBlogByUserId(String userId) throws SQLException {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -58,18 +60,19 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
         try{
             connection = dataSource.getConnection();
 
-            statement = connection.prepareStatement("select * from blog_tb where blog_id = (select blog_id from user_blog_tb where user_id = ?)");
+            statement = connection.prepareStatement("select * from blog_tb where user_id = ?");
             statement.setString(1, userId);
 
             resultSet = statement.executeQuery();
 
             List<Blog> list = new ArrayList<Blog>();
             while(resultSet.next()){
+                //String id, String title, String keyWords, Date time, int clicks, String context, boolean isTop, boolean isQuintessence, String userId
                 list.add(new Blog(resultSet.getString("blog_id"),
                         resultSet.getString("blog_title"), resultSet.getString("blog_keywords"),
                         resultSet.getDate("blog_time"), resultSet.getInt("blog_clicks"),
                         resultSet.getString("blog_content"), resultSet.getInt("top") == 1,
-                        resultSet.getInt("quintessence") == 1));
+                        resultSet.getInt("quintessence") == 1, resultSet.getString("user_id")));
             }
             return list;
 
@@ -78,6 +81,7 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
         }
     }
 
+    @Override
     public List<Blog> getAllBlogs() throws SQLException {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -96,7 +100,7 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
                         resultSet.getString("blog_title"), resultSet.getString("blog_keywords"),
                         resultSet.getDate("blog_time"), resultSet.getInt("blog_clicks"),
                         resultSet.getString("blog_content"), resultSet.getInt("top") == 1,
-                        resultSet.getInt("quintessence") == 1));
+                        resultSet.getInt("quintessence") == 1, resultSet.getString("user_id")));
             }
             return list;
 
@@ -105,7 +109,8 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
         }
     }
 
-    public boolean addBlogs(User user, Blog blog) throws SQLException {
+    @Override
+    public boolean addBlogs(String userId, Blog blog) throws SQLException {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;
@@ -120,7 +125,7 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
 
             statement.close();
 
-            statement = connection.prepareStatement("insert into blog_tb value (?, ?, ?, ?, ?, ?, ?, ?)");
+            statement = connection.prepareStatement("insert into blog_tb value (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, blog.getId());
             statement.setString(2, blog.getTitle());
             statement.setString(3, blog.getContext());
@@ -129,43 +134,24 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
             statement.setDate(6, new Date(blog.getTime().getTime()));
             statement.setInt(7, blog.isTop() ? 1 : 0);
             statement.setInt(8, blog.isQuintessence() ? 1 : 0);
-
-            if(statement.executeUpdate() == 0){
-                return false;
-            }
-            statement.close();
-
-
-
-            statement = connection.prepareStatement("insert into user_blog_tb value (?, ?)");
-            statement.setString(1, user.getId());
-            statement.setString(2, blog.getId());
-
+            statement.setString(9, blog.getUserId());
             return statement.executeUpdate() != 0;
+
         }finally {
             JdbcUtil.close(connection, statement, resultSet);
         }
     }
 
-    public boolean deleteBlogs(User user, Blog blog) throws SQLException {
+    @Override
+    public boolean deleteBlogs(String blogId) throws SQLException {
         Connection connection = null;
         PreparedStatement statement = null;
 
         try{
             connection = dataSource.getConnection();
 
-            statement = connection.prepareStatement("delete from user_blog_tb where user_id = ? and blog_id = ?");
-            statement.setString(1, user.getId());
-            statement.setString(2, blog.getId());
-
-            if(statement.executeUpdate() == 0){
-                return false;
-            }
-            statement.close();
-
-
             statement = connection.prepareStatement("delete from blog_tb where blog_id = ?");
-            statement.setString(1, blog.getId());
+            statement.setString(1, blogId);
 
             return statement.executeUpdate() != 0;
         }finally {
@@ -173,6 +159,7 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
         }
     }
 
+    @Override
     public boolean updateBlogs(Blog blog) throws SQLException {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -181,7 +168,7 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
             connection = dataSource.getConnection();
 
             statement = connection.prepareStatement("update blog_tb set blog_title=?, blog_content=?, blog_keywords=?" +
-                    ", blog_clicks=?, blog_time=?, top=?, quintessence=? where blog_id = ?");
+                    ", blog_clicks=?, blog_time=?, top=?, quintessence=?, uuser_id=? where blog_id = ?");
             statement.setString(1, blog.getTitle());
             statement.setString(2, blog.getContext());
             statement.setString(3, blog.getKeyWords());
@@ -189,6 +176,8 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
             statement.setDate(5, new Date(blog.getTime().getTime()));
             statement.setInt(6, blog.isTop() ? 1 : 0);
             statement.setInt(7, blog.isQuintessence() ? 1 : 0);
+            statement.setString(8, blog.getUserId());
+            statement.setString(9, blog.getId());
 
             return statement.executeUpdate() != 0;
         }finally {
