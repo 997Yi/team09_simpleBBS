@@ -1,10 +1,8 @@
 package com.team09.service.impl;
 
 import com.team09.bean.Blog;
-import com.team09.bean.User;
 import com.team09.dao.BlogDao;
 import com.team09.dao.impl.BlogDaoImpl;
-import com.team09.service.AdminService;
 import com.team09.service.BlogService;
 
 import java.sql.SQLException;
@@ -25,6 +23,9 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public Blog getBlogById(String id) {
         try {
+            if (id == null || id.isEmpty()){
+                return null;
+            }
             return blogDao.getBlogById(id);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -35,6 +36,9 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<Blog> getBlogByUserId(String userId) {
         try {
+            if (userId == null || userId.isEmpty()){
+                return null;
+            }
             return blogDao.getBlogByUserId(userId);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,6 +59,9 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public boolean addBlogs(Blog blog) {
         try {
+            if (blog == null){
+                return false;
+            }
             return blogDao.addBlogs(blog);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -65,6 +72,9 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public boolean deleteBlogs(Blog blog) {
         try {
+            if (blog == null){
+                return false;
+            }
             return blogDao.deleteBlogs(blog.getId());
         } catch (SQLException e) {
             e.printStackTrace();
@@ -75,6 +85,9 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public boolean updateBlogs(Blog blog) {
         try {
+            if (blog == null){
+                return false;
+            }
             return blogDao.updateBlogs(blog);
         } catch (SQLException e) {
             e.printStackTrace();
