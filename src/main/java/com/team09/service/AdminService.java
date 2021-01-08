@@ -14,7 +14,6 @@ public interface AdminService {
      * 使用id获取管理员
      * @param id
      * @return
-     * @throws SQLException
      */
     public Admin getAdminById(String id);
 
@@ -22,7 +21,6 @@ public interface AdminService {
      * 使用name获取管理员
      * @param name
      * @return
-     * @throws SQLException
      */
     public Admin getAdminByName(String name);
 
@@ -30,7 +28,6 @@ public interface AdminService {
      * 更新管理员信息
      * @param admin
      * @return
-     * @throws SQLException
      */
     public boolean updateAdmin(Admin admin);
 
@@ -38,7 +35,6 @@ public interface AdminService {
      * 添加管理员
      * @param admin
      * @return
-     * @throws SQLException
      */
     public boolean addAdmin(Admin admin);
 
@@ -47,7 +43,6 @@ public interface AdminService {
      * 根据id删除管理员
      * @param id
      * @return
-     * @throws SQLException
      */
     public boolean deleteAdminById(String id);
 
@@ -55,7 +50,6 @@ public interface AdminService {
      * 根据name删除管理员
      * @param name
      * @return
-     * @throws SQLException
      */
     public boolean deleteAdminByName(String name);
 }
