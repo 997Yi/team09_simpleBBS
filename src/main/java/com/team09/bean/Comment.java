@@ -16,21 +16,24 @@ public class Comment {
 
     private Date time;
 
+    private String userId;
+
+    private String blogId;
 
     public Comment() {
     }
 
-    public Comment(String content, String status, Date time) {
+    public Comment(String content, String status, Date time, String userId, String blogId) {
         this.content = content;
         this.status = status;
         this.time = time;
+        this.userId = userId;
+        this.blogId = blogId;
     }
 
-    public Comment(String id, String content, String status, Date time) {
+    public Comment(String id, String content, String status, Date time, String userId, String blogId) {
+        this(content, status, time, userId, blogId);
         this.id = id;
-        this.content = content;
-        this.status = status;
-        this.time = time;
     }
 
     public String getId() {
@@ -63,5 +66,21 @@ public class Comment {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getBlogId() {
+        return blogId;
+    }
+
+    public void setBlogId(String blogId) {
+        this.blogId = blogId;
     }
 }

@@ -36,17 +36,16 @@ public interface BlogDao {
     public List<Blog> getAllBlogs() throws SQLException;
 
     /**
-     * 创建新的博客（需要操作blog_tb和user_blog_tb）
-     * @param userId
+     * 创建新的博客
      * @param blog
      * @return
      * @throws SQLException
      */
-    public boolean addBlogs(String userId, Blog blog) throws SQLException;
+    public boolean addBlogs(Blog blog) throws SQLException;
 
     /**
      * 删除博客
-     * @param blog
+     * @param blogId
      * @return
      * @throws SQLException
      */

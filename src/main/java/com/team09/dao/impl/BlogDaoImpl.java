@@ -110,7 +110,7 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
     }
 
     @Override
-    public boolean addBlogs(String userId, Blog blog) throws SQLException {
+    public boolean addBlogs(Blog blog) throws SQLException {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet resultSet = null;

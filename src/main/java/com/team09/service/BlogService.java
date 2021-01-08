@@ -36,13 +36,12 @@ public interface BlogService {
     public List<Blog> getAllBlogs() ;
 
     /**
-     * 创建新的博客（需要操作blog_tb和user_blog_tb）
-     * @param user
+     * 创建新的博客
      * @param blog
      * @return
      * @throws SQLException
      */
-    public boolean addBlogs(User user, Blog blog) ;
+    public boolean addBlogs(Blog blog) ;
 
     /**
      * 删除博客
@@ -50,7 +49,7 @@ public interface BlogService {
      * @return
      * @throws SQLException
      */
-    public boolean deleteBlogs(User user, Blog blog) ;
+    public boolean deleteBlogs(Blog blog) ;
 
 
     /**

@@ -44,9 +44,9 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public boolean addBlogs(User user, Blog blog) {
+    public boolean addBlogs(Blog blog) {
         try {
-            return blogDao.addBlogs(user.getId(), blog);
+            return blogDao.addBlogs(blog);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -54,7 +54,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public boolean deleteBlogs(User user, Blog blog) {
+    public boolean deleteBlogs(Blog blog) {
         try {
             return blogDao.deleteBlogs(blog.getId());
         } catch (SQLException e) {
