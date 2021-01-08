@@ -10,6 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
+/**
+ * @author team09
+ */
 public class UserDaoImpl extends BaseDao implements UserDao {
     private static UserDao userDao = new UserDaoImpl();
 
@@ -21,6 +25,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         return userDao;
     }
 
+    @Override
     public User getUserById(String id) throws SQLException {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -37,8 +42,6 @@ public class UserDaoImpl extends BaseDao implements UserDao {
                 user = new User(rs.getString("user_id"), rs.getString("user_name"),
                         rs.getString("user_password"), rs.getString("user_img"), rs.getString("user_profile"));
             }
-            rs.close();
-            pstmt.close();
             return user;
         } finally {
             JdbcUtil.close(connection, pstmt, rs);
@@ -46,6 +49,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
 
     }
 
+    @Override
     public User getUserByName(String username) throws SQLException {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -68,6 +72,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         }
     }
 
+    @Override
     public boolean addUser(User user) throws SQLException {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -78,8 +83,9 @@ public class UserDaoImpl extends BaseDao implements UserDao {
             pstmt = connection.prepareStatement("select * from user_tb where user_name=?");
             pstmt.setString(1, user.getUsername());
             rs = pstmt.executeQuery();
-            if (rs.next())
+            if (rs.next()) {
                 return false;
+            }
             pstmt.close();
             pstmt = connection.prepareStatement("insert into user_tb values(UUID(),?,?,?,?);");
             pstmt.setString(1, user.getUsername());
@@ -88,12 +94,13 @@ public class UserDaoImpl extends BaseDao implements UserDao {
             pstmt.setString(4, user.getProfile());
             int rows = pstmt.executeUpdate();
 
-            return rows == 1 ? true : false;
+            return rows == 1;
         } finally {
             JdbcUtil.close(connection, pstmt, rs);
         }
     }
 
+    @Override
     public boolean deleteUserById(String id) throws SQLException {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -108,6 +115,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         }
     }
 
+    @Override
     public boolean deleteUserByName(String username) throws SQLException {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -122,6 +130,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         }
     }
 
+    @Override
     public boolean updateUser(User user) throws SQLException {
         Connection connection = null;
         PreparedStatement pstmt = null;
@@ -131,8 +140,9 @@ public class UserDaoImpl extends BaseDao implements UserDao {
             pstmt = connection.prepareStatement("select * from user_tb where user_name=?");
             pstmt.setString(1, user.getUsername());
             rs = pstmt.executeQuery();
-            if (rs.next())
+            if (rs.next()) {
                 return false;
+            }
             pstmt.close();
             pstmt = connection.prepareStatement("update user_tb set user_name=?,user_password=?,user_img=?,user_profile=? where user_id=?;");
             pstmt.setString(1, user.getUsername());
@@ -142,7 +152,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
             pstmt.setString(5, user.getId());
             int rows = pstmt.executeUpdate();
 
-            return rows == 1 ? true : false;
+            return rows == 1;
         } finally {
             JdbcUtil.close(connection, pstmt);
         }
