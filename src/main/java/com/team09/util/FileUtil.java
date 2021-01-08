@@ -1,6 +1,8 @@
 package com.team09.util;
 
 
+import org.apache.commons.fileupload.FileItem;
+
 import java.io.*;
 
 /**
@@ -8,7 +10,7 @@ import java.io.*;
  */
 public class FileUtil {
 
-    private static final String PATH = System.getProperty("user.dir") + "/src/main/webapp/WEB-INF/content/";
+    private static final String PATH = System.getProperty("user.dir") + "/src/main/webapp/WEB-INF/";
 
     static{
         File file = new File(PATH);
@@ -24,7 +26,7 @@ public class FileUtil {
      */
     public static String writeContent(String content) throws IOException {
         String fileName = System.currentTimeMillis() + ".txt";
-        File file = new File(PATH + fileName);
+        File file = new File(PATH + "content/" + fileName);
 
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(content);
@@ -35,7 +37,7 @@ public class FileUtil {
 
     public static String readContent(String fileName) throws IOException {
 
-        BufferedReader reader = new BufferedReader(new FileReader(PATH + fileName));
+        BufferedReader reader = new BufferedReader(new FileReader(PATH + "content/"+ fileName));
 
         StringBuffer stringBuffer = new StringBuffer();
         String line = null;
@@ -44,5 +46,19 @@ public class FileUtil {
         }
 
         return stringBuffer.toString();
+    }
+
+
+    public static String saveImg(FileItem fileItem) throws Exception {
+        String fileName = System.currentTimeMillis() + ".png";
+
+        File file = new File(PATH + "image/" + fileName);
+        fileItem.write(file);
+
+        return fileName;
+    }
+
+    public static String getImg(String fileName){
+        return PATH + "image/" + fileName;
     }
 }
