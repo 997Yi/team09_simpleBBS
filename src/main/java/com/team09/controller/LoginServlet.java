@@ -45,7 +45,6 @@ public class LoginServlet extends HttpServlet {
         String realCode = (String) session.getAttribute("validCode");
         session.removeAttribute("validCode");
 
-        System.out.println(validCode + " " + realCode);
         if(!validCode.toLowerCase().equals(realCode)){
             //验证码有误
             session.setAttribute("msg", "验证码错误");
