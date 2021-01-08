@@ -44,7 +44,7 @@ public interface AdminService {
      * @param id
      * @return
      */
-    public boolean deleteAdminById(String id);
+    public boolean deleteAdminById(int id);
 
     /**
      * 根据name删除管理员

@@ -2,6 +2,8 @@ package com.team09.service;
 
 import com.team09.bean.User;
 
+import java.util.List;
+
 
 /**
  * @author team09
@@ -49,4 +51,5 @@ public interface UserService {
      * @return
      */
     public boolean updateUser(User user);
+    List<User> findByPage(int page, int pageSize);
 }
