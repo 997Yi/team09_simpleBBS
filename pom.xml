@@ -67,7 +67,6 @@
             <version>${mysql-connector-version}</version>
         </dependency>
 
-
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>

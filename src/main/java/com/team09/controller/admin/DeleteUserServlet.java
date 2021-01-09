@@ -15,12 +15,11 @@ import java.io.PrintWriter;
 public class DeleteUserServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String sId= req.getParameter("id");
-        int id=(sId==null||sId.equals("")) ?0:Integer.parseInt(sId);
+        String id= req.getParameter("id");
         resp.setContentType("text/html;charset=utf-8");
         PrintWriter out=resp.getWriter();
 
-        AdminService userService=new AdminServiceImpl();
+        AdminService userService= AdminServiceImpl.getInstance();
         if (userService.deleteAdminById(id)){
             out.println("<script>alert('成功删除id="+id+"');window.location.href='list'</script>");
         }else {

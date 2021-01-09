@@ -18,7 +18,7 @@ import java.io.IOException;
 /**
  * @author team09
  */
-@WebServlet("delComment")
+@WebServlet("/user/delComment")
 public class DeleteCommentServlet extends HttpServlet {
     CommentService commentService = CommentServiceImpl.getInstance();
     @Override

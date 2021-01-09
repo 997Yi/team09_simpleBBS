@@ -11,7 +11,7 @@ public class AdminServiceImpl implements AdminService {
 
     private static AdminService adminService = new AdminServiceImpl();
 
-    public AdminServiceImpl(){}
+    private AdminServiceImpl(){}
 
     public static AdminService getInstance(){
         return adminService;
@@ -71,12 +71,9 @@ public class AdminServiceImpl implements AdminService {
         return false;
     }
 
+
+
     @Override
-    public boolean deleteAdminById(int id) {
-        return false;
-    }
-
-
     public boolean deleteAdminById(String id) {
         try {
             if (id == null || id.isEmpty()){

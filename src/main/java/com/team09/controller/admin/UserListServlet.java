@@ -23,7 +23,7 @@ public class UserListServlet extends HttpServlet {
         req.setAttribute("pageSize",pageSize);
 
 
-        UserService userService=new UserServiceImpl();
+        UserService userService=UserServiceImpl.getInstance();
         List<User> userList=userService.findByPage(page,pageSize);
         req.setAttribute("userList",userList);
         req.getRequestDispatcher("../userList.jsp").forward(req,resp);

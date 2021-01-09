@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 //import java.util.Objects;
 
-@WebListener()
+//@WebListener()
 public class UserOnlineListener implements ServletContextListener,
         HttpSessionListener, HttpSessionAttributeListener {
     List<User> onlineUser;

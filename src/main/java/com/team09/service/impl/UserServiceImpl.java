@@ -6,12 +6,13 @@ import com.team09.dao.impl.UserDaoImpl;
 import com.team09.service.UserService;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
     private static UserService userService = new  UserServiceImpl();
 
-    public UserServiceImpl(){}
+    private UserServiceImpl(){}
 
     public static  UserService getInstance(){
         return  userService;
@@ -95,5 +96,10 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public List<User> findByPage(int page, int pageSize) {
+        return null;
     }
 }

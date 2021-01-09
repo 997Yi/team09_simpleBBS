@@ -6,9 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 
-@WebFilter(filterName = "UserLoginFilter",urlPatterns = {"/*"})
+//@WebFilter(filterName = "UserLoginFilter",urlPatterns = {"/*"})
 public class UserLoginFilter implements Filter {
     String[] permitUrls=null;
+    @Override
     public void destroy() {
     }
     @Override

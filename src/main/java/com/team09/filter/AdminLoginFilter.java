@@ -5,7 +5,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter(filterName = "AdminLoginFilter",urlPatterns = {"/*"})
+//@WebFilter(filterName = "AdminLoginFilter",urlPatterns = {"/*"})
 public class AdminLoginFilter implements Filter {
     String[] permitUrls=null;
     public void destroy() {
