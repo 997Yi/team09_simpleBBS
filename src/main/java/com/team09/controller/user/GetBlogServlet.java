@@ -33,7 +33,6 @@ import java.util.Map;
 @WebServlet("/user/lookBlog")
 public class GetBlogServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         //获取需要详细浏览的帖子id
         String blogId = request.getParameter("blogId");
 

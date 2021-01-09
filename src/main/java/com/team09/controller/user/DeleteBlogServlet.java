@@ -27,9 +27,6 @@ public class DeleteBlogServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("UTF-8");
-        resp.setContentType("text/html; charset=utf-8");
-
         HttpSession session = req.getSession();
         String blogId = req.getParameter("blogId");
         if(blogId == null || blogId.equals("")){

@@ -7,11 +7,27 @@
     <title>注册</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/layui/css/layui.css">
 </head>
-<body>
-<div style="width: 100%; margin-top: 50px; text-align:center">
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">simpleBBS 简易博客</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="index.jsp">主页</a></li>
+            <li class="layui-nav-item"><a href="">精华帖</a></li>
+            <li class="layui-nav-item"><a href="">发布博客</a></li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item  layui-this">
+                <a href="login.jsp">
+                    点击登陆
+                </a>
+            </li>
+        </ul>
+    </div>
     <div class="layui-input-block" style="border: #2D93CA 2px solid; width: 50%; margin: 150px auto; padding: 30px 0 10px 0;">
         <h2 style="text-align: center; margin-bottom: 30px">注册页面</h2>
-        <form class="layui-form" action="${pageContext.request.contextPath}/register" method="post" style="width: 80%; margin: 0 auto">
+        <form class="layui-form" action="${pageContext.request.contextPath}/user/register" method="post" style="width: 80%; margin: 0 auto">
             <div style="margin: 0 auto; width: 60%" >
                 <div class="layui-form-item" >
                     <div class="layui-input-block" style="margin-left: 0px;">
@@ -23,17 +39,6 @@
                         <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
                     </div>
                 </div>
-                <div class="layui-form-item">
-                    <div class="layui-input-block" style="margin-left: 0px;">
-                        <select name="age" lay-verify="required" >
-                            <option value="">请选择年龄</option>
-                            <jstl:forEach begin="0" end="120" step="1" var="age">
-                                <option value="${age}">${age}岁</option>
-                            </jstl:forEach>
-
-                        </select>
-                    </div>
-                </div>
 
                 <div class="layui-form-item">
                     <div class="layui-input-block" style="margin: 0px;">
@@ -41,29 +46,17 @@
                         ><img src="${pageContext.request.contextPath}/validCode" style="height: auto; width: 30%; margin-left: 10%;">
                     </div>
                 </div>
-
-                <div class="layui-form-item">
-                    <div class="layui-input-block" style="margin-left: 0px;">
-                        <input type="checkbox" name="hobby1" title="运动" value="运动">
-                        <input type="checkbox" name="hobby2" title="阅读" value="阅读">
-                        <input type="checkbox" name="hobby3" title="发呆" value="发呆">
-                    </div>
-                </div>
-
-                <div class="layui-form-item">
-                    <div class="layui-input-block" style="margin-left: 0px;">
-                        <input type="radio" name="gender" value="男" title="男">
-                        <input type="radio" name="gender" value="女" title="女" checked>
-                    </div>
-                </div>
-
             </div>
             <div style="margin: 0 auto; width: 40%" >
                 <div class="layui-form-item">
                 </div>
-                <div class="layui-input-block" style="margin-left: 0px">
+                <div class="layui-input-block" style="margin-left: 0px; text-align: center;">
                     <button class="layui-btn" lay-submit lay-filter="formDemo">注册</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+                <div class="layui-input-block" style="margin-top: 40px; font-size: 14px; margin-left: 0px; text-align: center;">
+                    已有账号？
+                    <a href="login.jsp">点击登陆</a>
                 </div>
             </div>
         </form>

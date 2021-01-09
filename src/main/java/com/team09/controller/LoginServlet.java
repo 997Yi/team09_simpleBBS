@@ -33,9 +33,6 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("utf-8");
-        resp.setContentType("text/html; charset=UTF-8");
-
         HttpSession session = req.getSession();
 
         String username = req.getParameter("username");
@@ -49,8 +46,7 @@ public class LoginServlet extends HttpServlet {
             //验证码有误
             session.setAttribute("msg", "验证码错误");
 
-            //TODO 跳转到登陆页面
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            resp.sendRedirect(req.getContextPath() + "/login.jsp");
             return;
         }
 
@@ -62,10 +58,9 @@ public class LoginServlet extends HttpServlet {
 
         if(userInfo == null){
             //账号不存在
-
             session.setAttribute("msg", "该账号不存在，检查后重试");
-            //TODO 跳转到登陆页面
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+
+            resp.sendRedirect(req.getContextPath() + "/login.jsp");
             return;
         }
 
@@ -73,23 +68,22 @@ public class LoginServlet extends HttpServlet {
             if(((User) userInfo).getPassword().equals(password)){
                 //登陆成功
                 session.setAttribute("userInfo", userInfo);
-                //TODO 跳转到博客首页
 
+                resp.sendRedirect(req.getContextPath() + "/index.jsp");
                 return;
             }
         }else{
             if(((Admin) userInfo).getPassword().equals(password)){
                 //登陆成功
                 session.setAttribute("adminInfo", userInfo);
-                //TODO 跳转到博客首页
 
+                resp.sendRedirect(req.getContextPath() + "/index.jsp");
                 return;
             }
         }
 
         //登陆失败
         session.setAttribute("msg", "账号密码不匹配，请重试");
-        //TODO 跳转到登陆页面
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        resp.sendRedirect(req.getContextPath() + "/login.jsp");
     }
 }

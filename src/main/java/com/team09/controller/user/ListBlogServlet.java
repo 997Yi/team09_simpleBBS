@@ -20,7 +20,6 @@ import java.util.List;
 @WebServlet("/user/listBlog")
 public class ListBlogServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
         //获取数据库中所有博客
         BlogService blogService = BlogServiceImpl.getInstance();
         List<Blog> blogs = blogService.getAllBlogs();

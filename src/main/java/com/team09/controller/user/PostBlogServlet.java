@@ -33,9 +33,6 @@ public class PostBlogServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setCharacterEncoding("utf-8");
-        resp.setContentType("text/html; charset=UTF-8");
-
         HttpSession session = req.getSession();
 
         String title = req.getParameter("title");

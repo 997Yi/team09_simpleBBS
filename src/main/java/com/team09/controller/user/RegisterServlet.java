@@ -18,46 +18,46 @@ import java.util.Date;
  * @author team09
  * 用户注册servlet
  *  需要参数 username passwd validCode
- *  可选参数 imgUrl profile
  */
 @WebServlet("/user/register")
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO jsp页面提交数据时统一数据名称
         //获取表单数据
         String username = request.getParameter("username");
-        String passwd = request.getParameter("passwd");
+        String passwd = request.getParameter("password");
         String verCode = request.getParameter("validCode");
-        String imgUrl = request.getParameter("imgUrl");
-        String profile = request.getParameter("profile");
 
         //结果
         boolean result = false;
-        //TODO 默认跳转链接为注册界面
-        String url = "  ";
+        String url = request.getContextPath() + "/index.jsp";
 
-        //1.判断数据数据格式是否正确
-        //传入的imgUrl和profile可以为空 存入数据库时存入null
 
-        //2.判断验证码是否正确(从session中获取验证码)
+        //判断验证码是否正确(从session中获取验证码)
         HttpSession session = request.getSession();
-        String rightCode = (String) session.getAttribute("validCode");
+        String rightCode = ((String) session.getAttribute("validCode")).toLowerCase();
         session.removeAttribute("validCode");
 
         if (rightCode.equals(verCode)) {
-            //3.调用service层 将数据存入数据库
+            //调用service层 将数据存入数据库
 
             UserService userService = UserServiceImpl.getInstance();
-            result = userService.addUser(new User(username, passwd, imgUrl, profile));
+            result = userService.addUser(new User(username, passwd, null, null));
 
             //TODO 注册成功后跳转至登录界面
-            if (result == true) {
-                url = "   ";
+            if (result != true) {
+                session.setAttribute("msg", "注册失败");
+                url = request.getContextPath() + "/register.jsp";
+            }else{
+                session.setAttribute("userInfo", userService.getUserByName(username));
             }
+        }else{
+            session.setAttribute("msg", "验证码错误!");
+            url = request.getContextPath() + "/register.jsp";
         }
         //4.根据结果重定向至注册界面/登录界面
         response.sendRedirect(url);
+        return;
     }
 
     @Override
