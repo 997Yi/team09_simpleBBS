@@ -1,4 +1,4 @@
-<%@ page import="cdu.lj.model.User" %>
+<%@ page import="com.team09.bean.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fun" uri="http://java.sun.com/jsp/jstl/functions" %>
