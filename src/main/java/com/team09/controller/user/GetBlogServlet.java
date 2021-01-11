@@ -9,6 +9,7 @@ import com.team09.service.UserService;
 import com.team09.service.impl.BlogServiceImpl;
 import com.team09.service.impl.CommentServiceImpl;
 import com.team09.service.impl.UserServiceImpl;
+import com.team09.util.FileUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -41,6 +42,7 @@ public class GetBlogServlet extends HttpServlet {
         Blog blog = blogService.getBlogById(blogId);
         if (blog != null) {
             //将博客详细信息返回 使用request
+            blog.setContext(FileUtil.readContent(blog.getContext()));
             request.setAttribute("blog", blog);
 
             //将帖子具体内容返回
