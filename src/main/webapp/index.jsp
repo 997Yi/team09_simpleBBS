@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>simpleBBS</title>
+    <title>simpleBBS - 首页</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/css/blog.css">
 </head>
@@ -23,7 +23,7 @@
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item  layui-this"><a href="user/listBlog">主页</a></li>
             <li class="layui-nav-item"><a href="">精华帖</a></li>
-            <li class="layui-nav-item"><a href="">发布博客</a></li>
+            <li class="layui-nav-item"><a href="view/postBlog.jsp">发布博客</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <jstl:if test="${userInfo == null}">
@@ -77,12 +77,20 @@
 </div>
 <script src="${pageContext.request.contextPath}/layui/layui.js"></script>
 <script>
-    //JavaScript代码区域
-    layui.use('element', function(){
-        var element = layui.element;
+    layui.use(['form', 'element'], function () {
+        var form = layui.form;
 
+        //监听提交
+        form.on('submit(formDemo)', function (data) {
+        });
     });
 </script>
+<jstl:if test="${msg != null}">
+    <script>
+        alert("${msg}");
+    </script>
+    <% session.removeAttribute("msg"); %>
+</jstl:if>
 </body>
 </html>
 

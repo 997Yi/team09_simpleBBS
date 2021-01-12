@@ -27,7 +27,7 @@
         </ul>
     </div>
 
-    <div class="layui-input-block" style="border: #2D93CA 2px solid; width: 50%; margin: 150px auto; padding: 30px 0 10px 0;">
+    <div class="layui-input-block" style="border: 1px solid #e0e0e0; width: 50%; margin: 150px auto; padding: 30px 0 10px 0;background-color: #f8f8f8;">
         <h2 style="text-align: center; margin-bottom: 30px">登陆页面</h2>
         <form class="layui-form" action="${pageContext.request.contextPath}/login" method="post" style="width: 80%; margin: 0 auto">
             <div style="margin: 0 auto; width: 60%" >

@@ -48,3 +48,10 @@
     margin-left: 20px;
     margin-right: 30px;
 }
+
+.blog-block-top, .blog-block-quintessence{
+    font-size: 30px;
+    color: #FD482C;
+    float: right;
+    margin-right: 20px;
+}
