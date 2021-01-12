@@ -25,6 +25,6 @@ public class LogoutServlet extends HttpServlet {
         session.removeAttribute("adminInfo");
         session.invalidate();
 
-        resp.sendRedirect(req.getContextPath() + "/index.jsp");
+        resp.sendRedirect(req.getContextPath() + "/user/listBlog");
     }
 }

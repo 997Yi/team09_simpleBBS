@@ -23,12 +23,12 @@
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item  layui-this"><a href="user/listBlog">主页</a></li>
             <li class="layui-nav-item"><a href="">精华帖</a></li>
-            <li class="layui-nav-item"><a href="view/postBlog.jsp">发布博客</a></li>
+            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/view/postBlog.jsp">发布博客</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <jstl:if test="${userInfo == null}">
                 <li class="layui-nav-item">
-                    <a href="login.jsp">
+                    <a href="${pageContext.request.contextPath}/login.jsp">
                         点击登陆
                     </a>
                 </li>
@@ -37,8 +37,8 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;">
                         <img src=
-                             <jstl:if test="${userInfo.imgUrl == null}">
-                                 "http://t.cn/RCzsdCq"
+                            <jstl:if test="${userInfo.imgUrl == null}">
+                                     ${pageContext.request.contextPath}"/image/default.png"
                             </jstl:if>
                             <jstl:if test="${userInfo.imgUrl != null}">
                                 ${userInfo.imgUrl}
@@ -53,7 +53,7 @@
                         <dd><a href="">查看我的博客</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="logout">退出登陆</a></li>
+                <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/logout">退出登陆</a></li>
             </jstl:if>
         </ul>
     </div>
@@ -67,14 +67,14 @@
                         <div class="blog-user">
                             <div class="blog-user-img">
                                 <img src=
-                                             "http://t.cn/RCzsdCq"
+                                         "${pageContext.request.contextPath}/image/default.png"
                                 style="width: 60%;
                                         height: auto;
-                                            margin: 20% 20% 0;
+                                            margin: 30% 20% 0;
                                                 border-radius: 50%">
 
                                 <!-- <jstl:if test="${blog.value.imgUrl == null}">
-                                             "http://t.cn/RCzsdCq"
+                                             ${pageContext.request.contextPath}"/image/default.png"
                                      </jstl:if>
                                      <jstl:if test="${blog.value.imgUrl != null}">
                                          ${blog.value.imgUrl}

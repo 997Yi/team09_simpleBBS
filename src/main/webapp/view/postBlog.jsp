@@ -14,14 +14,22 @@
         <div class="layui-logo">simpleBBS 简易博客</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="user/listBlog">主页</a></li>
+            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/listBlog">主页</a></li>
             <li class="layui-nav-item"><a href="">精华帖</a></li>
             <li class="layui-nav-item layui-this"><a href="view/postBlog.jsp">发布博客</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    <img src=
+                         <jstl:if test="${userInfo.imgUrl == null}">
+                             ${pageContext.request.contextPath}"/image/default.png"
+                         </jstl:if>
+                         <jstl:if test="${userInfo.imgUrl != null}">
+                             ${userInfo.imgUrl}
+                         </jstl:if>
+
+                                 class="layui-nav-img">
                         ${userInfo.username}
                 </a>
                 <dl class="layui-nav-child">

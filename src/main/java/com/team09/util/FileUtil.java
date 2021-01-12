@@ -10,7 +10,7 @@ import java.io.*;
  */
 public class FileUtil {
 
-    private static final String PATH = System.getProperty("user.dir") + "/src/main/webapp/WEB-INF/";
+    private static final String PATH = System.getProperty("user.dir") + "/src/main/webapp/";
 
     static{
         File file = new File(PATH);
@@ -26,7 +26,7 @@ public class FileUtil {
      */
     public static String writeContent(String content) throws IOException {
         String fileName = System.currentTimeMillis() + ".txt";
-        File file = new File(PATH + "content/" + fileName);
+        File file = new File(PATH + "/WEB-INF/content/" + fileName);
 
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(content);
@@ -37,7 +37,7 @@ public class FileUtil {
 
     public static String readContent(String fileName) throws IOException {
 
-        BufferedReader reader = new BufferedReader(new FileReader(PATH + "content/"+ fileName));
+        BufferedReader reader = new BufferedReader(new FileReader(PATH + "/WEB-INF/content/"+ fileName));
 
         StringBuffer stringBuffer = new StringBuffer();
         String line = null;
