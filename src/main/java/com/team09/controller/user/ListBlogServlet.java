@@ -6,6 +6,7 @@ import com.team09.service.BlogService;
 import com.team09.service.UserService;
 import com.team09.service.impl.BlogServiceImpl;
 import com.team09.service.impl.UserServiceImpl;
+import com.team09.util.FileUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,14 +47,16 @@ public class ListBlogServlet extends HttpServlet {
         UserService userService = UserServiceImpl.getInstance();
 
         for (Blog blog : blogs) {
-            map.put(blog, userService.getUserById(blog.getUserId()));
+            User userById = userService.getUserById(blog.getUserId());
+            userById.setImgUrl(FileUtil.getImg(userById.getImgUrl()));
+            map.put(blog, userById);
         }
 
         //将所有博客返回给前端 存储在session中
         request.getSession().setAttribute("mapBlogs", map);
 
         //TODO 重定向至显示所有博客界面
-        request.getRequestDispatcher(request.getContextPath() + "/index.jsp").forward(request, response);
+        request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

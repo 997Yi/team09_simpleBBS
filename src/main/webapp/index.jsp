@@ -36,7 +36,16 @@
             <jstl:if test="${userInfo != null}">
                 <li class="layui-nav-item">
                     <a href="javascript:;">
-                        <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                        <img src=
+                             <jstl:if test="${userInfo.imgUrl == null}">
+                                 "http://t.cn/RCzsdCq"
+                            </jstl:if>
+                            <jstl:if test="${userInfo.imgUrl != null}">
+                                ${userInfo.imgUrl}
+                            </jstl:if>
+
+
+                                     class="layui-nav-img">
                         ${userInfo.username}
                     </a>
                     <dl class="layui-nav-child">
@@ -51,21 +60,43 @@
 
     <div style="padding:50px 20%; background-color: #f5f5f5;">
         <!-- 内容主体区域 -->
-        <div style=" width: 100%; height: 100%;">
-            <jstl:forEach items="${blogs}" var="blog">
+        <div style=" width: 100%; height: 100%; vertical-align: middle">
+            <jstl:forEach items="${mapBlogs}" var="blog">
                 <div class="blog-block">
                     <div class="blog-block-header">
-                        <div class="blog-block-title"><a href="">${blog.title}</a></div>
-                        <div class="blog-block-keywords">${blog.keyWords}</div>
+                        <div class="blog-user">
+                            <div class="blog-user-img">
+                                <img src=
+                                             "http://t.cn/RCzsdCq"
+                                style="width: 60%;
+                                        height: auto;
+                                            margin: 20% 20% 0;
+                                                border-radius: 50%">
+
+                                <!-- <jstl:if test="${blog.value.imgUrl == null}">
+                                             "http://t.cn/RCzsdCq"
+                                     </jstl:if>
+                                     <jstl:if test="${blog.value.imgUrl != null}">
+                                         ${blog.value.imgUrl}
+                                     </jstl:if>
+                                -->
+                            </div>
+                            <div class="blog-user-name">
+                                <p>${blog.value.username}</p>
+                            </div>
+                        </div><div class="blog-info">
+                            <div class="blog-block-title"><a href="">${blog.key.title}</a></div>
+                            <div class="blog-block-keywords">${blog.key.keyWords}</div>
+                        </div>
                     </div>
                     <div class="blog-block-tail">
-                        <div class="blog-block-time"><i class="layui-icon layui-icon-time"></i>${blog.time}</div>
-                        <div class="blog-block-clicks"><i class="layui-icon layui-icon-friends"></i>${blog.clicks}</div>
+                        <div class="blog-block-time"><i class="layui-icon layui-icon-time"></i>${blog.key.time}</div>
+                        <div class="blog-block-clicks"><i class="layui-icon layui-icon-friends"></i>${blog.key.clicks}</div>
 
-                        <jstl:if test="${blog.top == true}">
+                        <jstl:if test="${blog.key.top == true}">
                             <div class="blog-block-top"><i class="layui-icon layui-icon-top"></i></div>
                         </jstl:if>
-                        <jstl:if test="${blog.quintessence == true}">
+                        <jstl:if test="${blog.key.quintessence == true}">
                             <div class="blog-block-quintessence"><i class="layui-icon layui-icon-rate-solid"></i></div>
                         </jstl:if>
                     </div>
