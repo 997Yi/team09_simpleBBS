@@ -23,24 +23,38 @@ import java.util.*;
  */
 @WebServlet("/user/listBlog")
 public class ListBlogServlet extends HttpServlet {
+    BlogService blogService = BlogServiceImpl.getInstance();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String id = request.getParameter("id");
+
+        List<Blog> blogs;
+        String url = "/index.jsp";
+        if(id == null || id.equals("")){
+            blogs = blogService.getAllBlogs();
+        } else{
+            blogs = blogService.getBlogByUserId(id);
+            url = "/view/listSelfBlog.jsp";
+        }
         //获取数据库中所有博客
-        BlogService blogService = BlogServiceImpl.getInstance();
-        List<Blog> blogs = blogService.getAllBlogs();
+
+
 
         // 把精华和置顶博客排序放在前面
-        Collections.sort(blogs, new Comparator<Blog>() {
-            @Override
-            public int compare(Blog o1, Blog o2) {
-                if (o1.isQuintessence() != o2.isQuintessence()) {
-                    return o1.isQuintessence() == true ? 1 : -1;
+        if(!blogs.isEmpty()){
+            Collections.sort(blogs, new Comparator<Blog>() {
+                @Override
+                public int compare(Blog o1, Blog o2) {
+                    if (o1.isQuintessence() != o2.isQuintessence()) {
+                        return o1.isQuintessence() == true ? 1 : -1;
+                    }
+                    if (o1.isTop() != o2.isTop()) {
+                        return o1.isTop() == true ? 1 : -1;
+                    }
+                    return 0;
                 }
-                if (o1.isTop() != o2.isTop()) {
-                    return o1.isTop() == true ? 1 : -1;
-                }
-                return 0;
-            }
-        });
+            });
+        }
 
         //把博客和发博客用户信息利用map作为映射同时保存在session中
         Map<Blog, User> map = new HashMap<>();
@@ -55,7 +69,7 @@ public class ListBlogServlet extends HttpServlet {
         //将所有博客返回给前端 存储在session中
         request.getSession().setAttribute("mapBlogs", map);
 
-        request.getRequestDispatcher("/index.jsp").forward(request, response);
+        request.getRequestDispatcher(url).forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
