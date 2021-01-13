@@ -59,4 +59,10 @@ public interface BlogDao {
      * @throws SQLException
      */
     public boolean updateBlogs(Blog blog) throws SQLException;
+
+    /**
+     * 获取所有精华博客
+     * @return
+     */
+    public List<Blog> getQuintBlogs() throws SQLException;
 }

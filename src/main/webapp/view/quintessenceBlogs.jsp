@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>simpleBBS - 首页</title>
+    <title>simpleBBS - 精华博客</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/css/blog.css">
 </head>
@@ -21,8 +21,8 @@
         <div class="layui-logo">simpleBBS 简易博客</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item  layui-this"><a href="user/listBlog">主页</a></li>
-            <li class="layui-nav-item"><a href="">精华帖</a></li>
+            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/listBlog">主页</a></li>
+            <li class="layui-nav-item layui-this"><a href="${pageContext.request.contextPath}/view/quintessenceBlogs.jsp">精华帖</a></li>
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/view/postBlog.jsp">发布博客</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
@@ -93,9 +93,6 @@
                         <div class="blog-block-time"><i class="layui-icon layui-icon-time"></i>${blog.key.time}</div>
                         <div class="blog-block-clicks"><i class="layui-icon layui-icon-friends"></i>${blog.key.clicks}</div>
 
-                        <jstl:if test="${blog.key.top == true}">
-                            <div class="blog-block-top"><i class="layui-icon layui-icon-top"></i></div>
-                        </jstl:if>
                         <jstl:if test="${blog.key.quintessence == true}">
                             <div class="blog-block-quintessence"><i class="layui-icon layui-icon-rate-solid"></i></div>
                         </jstl:if>

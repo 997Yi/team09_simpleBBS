@@ -184,4 +184,32 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
             JdbcUtil.close(connection, statement);
         }
     }
+
+    @Override
+    public List<Blog> getQuintBlogs() throws SQLException {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try{
+            connection = dataSource.getConnection();
+
+            statement = connection.prepareStatement("select * from blog_tb where quintessence = 1");
+
+            resultSet = statement.executeQuery();
+
+            List<Blog> list = new ArrayList<Blog>();
+            while(resultSet.next()){
+                list.add(new Blog(resultSet.getString("blog_id"),
+                        resultSet.getString("blog_title"), resultSet.getString("blog_keywords"),
+                        resultSet.getDate("blog_time"), resultSet.getInt("blog_clicks"),
+                        resultSet.getString("blog_content"), resultSet.getInt("top") == 1,
+                        resultSet.getInt("quintessence") == 1, resultSet.getString("user_id")));
+            }
+            return list;
+
+        }finally {
+            JdbcUtil.close(connection, statement, resultSet);
+        }
+    }
 }

@@ -94,4 +94,14 @@ public class BlogServiceImpl implements BlogService {
         }
         return false;
     }
+
+    @Override
+    public List<Blog> getQuintBlogs() {
+        try {
+            return blogDao.getQuintBlogs();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

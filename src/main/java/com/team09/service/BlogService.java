@@ -53,4 +53,10 @@ public interface BlogService {
      * @return
      */
     public boolean updateBlogs(Blog blog) ;
+
+    /**
+     * 查询精华博客
+     * @return
+     */
+    public List<Blog> getQuintBlogs();
 }

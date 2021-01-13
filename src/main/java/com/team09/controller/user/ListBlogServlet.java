@@ -55,7 +55,6 @@ public class ListBlogServlet extends HttpServlet {
         //将所有博客返回给前端 存储在session中
         request.getSession().setAttribute("mapBlogs", map);
 
-        //TODO 重定向至显示所有博客界面
         request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
