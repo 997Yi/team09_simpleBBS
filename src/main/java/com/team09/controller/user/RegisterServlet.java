@@ -26,7 +26,7 @@ public class RegisterServlet extends HttpServlet {
         //获取表单数据
         String username = request.getParameter("username");
         String passwd = request.getParameter("password");
-        String verCode = request.getParameter("validCode");
+        String verCode = request.getParameter("validCode").toLowerCase();
 
         //结果
         boolean result = false;
