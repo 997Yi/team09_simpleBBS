@@ -14,6 +14,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -78,16 +79,22 @@ public class ModifyUserServlet extends HttpServlet {
         }
 
 
-        User user = (User)req.getSession().getAttribute("userInfo");
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("userInfo");
+        user.setId(((User) session.getAttribute("userInfo")).getId());
         user.setUsername(username);
         user.setImgUrl(image);
         user.setProfile(profile);
         user.setPassword(password);
 
         if(userService.updateUser(user)){
-            //TODO 修改成功后逻辑代码
+            user.setImgUrl(FileUtil.getImg(user.getImgUrl()));
+            session.setAttribute("userInfo", user);
+            session.setAttribute("msg", "修改成功");
+            resp.sendRedirect(req.getContextPath() + "/user/listBlog");
         }else{
-            //TODO 修改失败后逻辑代码
+            session.setAttribute("msg", "修改失败");
+            resp.sendRedirect(req.getContextPath() + "/view/modifyInfo.jsp");
         }
     }
 

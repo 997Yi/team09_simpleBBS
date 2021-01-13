@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/css/blog.css">
 </head>
-<body class="layui-layout-body">
+<body class="layui-layout-body" style="overflow: auto">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header">
         <div class="layui-logo">simpleBBS 简易博客</div>
@@ -36,21 +36,17 @@
             <jstl:if test="${userInfo != null}">
                 <li class="layui-nav-item">
                     <a href="javascript:;">
-                        <img src=
-                            <jstl:if test="${userInfo.imgUrl == null}">
-                                     ${pageContext.request.contextPath}"/image/default.png"
-                            </jstl:if>
-                            <jstl:if test="${userInfo.imgUrl != null}">
-                                ${userInfo.imgUrl}
-                            </jstl:if>
-
-
-                                     class="layui-nav-img">
+                        <jstl:if test="${userInfo.imgUrl == null}">
+                            <img src= "${pageContext.request.contextPath}/image/default.png" class="layui-nav-img">
+                        </jstl:if>
+                        <jstl:if test="${userInfo.imgUrl != null}">
+                            <img src= "${pageContext.request.contextPath}${userInfo.imgUrl}" class="layui-nav-img">
+                        </jstl:if>
                         ${userInfo.username}
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="">修改信息</a></dd>
-                        <dd><a href="">查看我的博客</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/view/modifyInfo.jsp">修改信息</a></dd>
+                        <dd><a href="${pageContext.request.contextPath}/user/listBlog?id=${userInfo.id}">查看我的博客</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/logout">退出登陆</a></li>
@@ -66,20 +62,12 @@
                     <div class="blog-block-header">
                         <div class="blog-user">
                             <div class="blog-user-img">
-                                <img src=
-                                         "${pageContext.request.contextPath}/image/default.png"
-                                style="width: 60%;
-                                        height: auto;
-                                            margin: 20% 20% 0;
-                                                border-radius: 50%">
-
-                                <!-- <jstl:if test="${blog.value.imgUrl == null}">
-                                             ${pageContext.request.contextPath}"/image/default.png"
-                                     </jstl:if>
-                                     <jstl:if test="${blog.value.imgUrl != null}">
-                                         ${blog.value.imgUrl}
-                                     </jstl:if>
-                                -->
+                                <jstl:if test="${blog.value.imgUrl == null}">
+                                    <img src= "${pageContext.request.contextPath}/image/default.png" style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
+                                </jstl:if>
+                                <jstl:if test="${blog.value.imgUrl != null}">
+                                    <img src= "${pageContext.request.contextPath}${blog.value.imgUrl}" style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
+                                </jstl:if>
                             </div>
                             <div class="blog-user-name">
                                 <p>${blog.value.username}</p>

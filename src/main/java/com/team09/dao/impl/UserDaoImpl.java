@@ -137,13 +137,6 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         ResultSet rs = null;
         try {
             connection = dataSource.getConnection();
-            pstmt = connection.prepareStatement("select * from user_tb where user_name=?");
-            pstmt.setString(1, user.getUsername());
-            rs = pstmt.executeQuery();
-            if (rs.next()) {
-                return false;
-            }
-            pstmt.close();
             pstmt = connection.prepareStatement("update user_tb set user_name=?,user_password=?,user_img=?,user_profile=? where user_id=?;");
             pstmt.setString(1, user.getUsername());
             pstmt.setString(2, user.getPassword());

@@ -3,6 +3,7 @@ package com.team09.util;
 
 import org.apache.commons.fileupload.FileItem;
 
+import javax.servlet.jsp.PageContext;
 import java.io.*;
 
 /**
@@ -10,9 +11,11 @@ import java.io.*;
  */
 public class FileUtil {
 
-    private static final String PATH = System.getProperty("user.dir") + "/src/main/webapp/";
+    private static String PATH = "";
 
-    static{
+    public static void setPath(String path){
+        PATH = path;
+
         File file = new File(PATH);
         if(!file.exists()){
             file.mkdirs();
@@ -52,13 +55,13 @@ public class FileUtil {
     public static String saveImg(FileItem fileItem) throws Exception {
         String fileName = System.currentTimeMillis() + ".png";
 
-        File file = new File(PATH + "image/" + fileName);
+        File file = new File(PATH + "/image/" + fileName);
         fileItem.write(file);
 
         return fileName;
     }
 
     public static String getImg(String fileName){
-        return PATH + "image/" + fileName;
+        return "/image/" + fileName;
     }
 }

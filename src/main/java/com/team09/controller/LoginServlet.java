@@ -6,6 +6,7 @@ import com.team09.service.AdminService;
 import com.team09.service.UserService;
 import com.team09.service.impl.AdminServiceImpl;
 import com.team09.service.impl.UserServiceImpl;
+import com.team09.util.FileUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -64,11 +65,13 @@ public class LoginServlet extends HttpServlet {
             return;
         }
 
+
+
         if(userInfo instanceof User){
             if(((User) userInfo).getPassword().equals(password)){
                 //登陆成功
                 session.setAttribute("userInfo", userInfo);
-
+                ((User) userInfo).setImgUrl(FileUtil.getImg(((User) userInfo).getImgUrl()));
                 resp.sendRedirect(req.getContextPath() + "/index.jsp");
                 return;
             }
