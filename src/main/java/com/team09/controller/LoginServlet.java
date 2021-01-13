@@ -77,7 +77,7 @@ public class LoginServlet extends HttpServlet {
                 //登陆成功
                 session.setAttribute("adminInfo", userInfo);
 
-                resp.sendRedirect(req.getContextPath() + "/index.jsp");
+                resp.sendRedirect(req.getContextPath() + "/view/admin/userList.jsp");
                 return;
             }
         }
