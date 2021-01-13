@@ -45,17 +45,10 @@ public class GetBlogServlet extends HttpServlet {
             blog.setContext(FileUtil.readContent(blog.getContext()));
             request.setAttribute("blog", blog);
 
-            //将帖子具体内容返回
-            InputStream is = new FileInputStream(blog.getContext());
-            BufferedReader in = new BufferedReader(new InputStreamReader(is));
-            StringBuffer buffer = new StringBuffer();
-            String line = "";
-            while ((line = in.readLine()) != null) {
-                buffer.append(line);
-            }
+            //返回博客作者信息
+            UserService userService = UserServiceImpl.getInstance();
+            request.setAttribute("blogUser",userService.getUserById(blog.getUserId()));
 
-            //将博客内容返回 使用request
-            request.setAttribute("blogContext", buffer);
 
             //进入service层根据博客id获取用户评论
             CommentService commentService = CommentServiceImpl.getInstance();
@@ -63,7 +56,6 @@ public class GetBlogServlet extends HttpServlet {
 
             //进入service层获取用户信息
             Map<Comment,User> map = new HashMap<Comment,User>();
-            UserService userService = UserServiceImpl.getInstance();
             for(Comment c: comment){
                 map.put(c,userService.getUserById(c.getUserId()));
             }
@@ -72,10 +64,10 @@ public class GetBlogServlet extends HttpServlet {
             request.setAttribute("blogComment",map);
 
             //TODO 跳转至显示详细帖子内容页面
-            request.getRequestDispatcher("   ").forward(request, response);
+            request.getRequestDispatcher("../view/viewBlog.jsp").forward(request, response);
         } else {
             //TODO 跳转至原本位置
-            response.sendRedirect("");
+            response.sendRedirect("../view/index.jsp");
         }
     }
 
