@@ -27,9 +27,12 @@ public class DeleteUserServlet extends HttpServlet {
 
         BlogService blogService = BlogServiceImpl.getInstance();
         List<Blog> blogs = blogService.getBlogByUserId(userId);
-        for (Blog blog : blogs){
-            blogService.deleteBlogs(blog);
+        if (blogs != null) {
+            for (Blog blog : blogs){
+                blogService.deleteBlogs(blog);
+            }
         }
+        resp.sendRedirect(req.getContextPath() + "/view/admin/userList.jsp");
     }
 
 

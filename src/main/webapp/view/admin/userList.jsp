@@ -35,11 +35,13 @@
         <table class="layui-hide" id="test" lay-filter="test"></table>
 
         <script type="text/html" id="barDemo">
-            <a class="layui-btn layui-btn-danger layui-btn-xs" href="/admin/del" lay-event="del">删除</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
         </script>
     </div>
 
 </div>
+
+<script src="${pageContext.request.contextPath}/webjars/jquery/3.3.1-2/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/layui/layui.js" charset="UTF-8"></script>
 <script>
     layui.use('table',function(){
@@ -76,6 +78,8 @@
                 layer.confirm('真的删除行么', function(index){
                     obj.del();
                     layer.close(index);
+                    var id = data.id;
+                    $.get("${pageContext.request.contextPath}/admin/del", {userId:id});
                 });
             }
         });
