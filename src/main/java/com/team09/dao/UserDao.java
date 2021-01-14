@@ -3,6 +3,7 @@ package com.team09.dao;
 import com.team09.bean.User;
 
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * @author team09
@@ -56,4 +57,12 @@ public interface UserDao {
      * @throws SQLException
      */
     public boolean updateUser(User user) throws SQLException;
+
+    /**
+     * 分页查询用户
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    List<User> findByPage(Integer page, Integer pageSize)  throws SQLException;
 }

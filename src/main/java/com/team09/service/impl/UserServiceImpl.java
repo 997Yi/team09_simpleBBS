@@ -99,7 +99,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findByPage(int page, int pageSize) {
+    public List<User> findByPage(Integer page, Integer pageSize) {
+        try {
+            if (page == null || pageSize == null){
+                return null;
+            }
+            return userDao.findByPage(page, pageSize);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

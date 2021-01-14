@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 
 /**
@@ -146,6 +147,37 @@ public class UserDaoImpl extends BaseDao implements UserDao {
             int rows = pstmt.executeUpdate();
 
             return rows == 1;
+        } finally {
+            JdbcUtil.close(connection, pstmt);
+        }
+    }
+
+    /**
+     * 分页查询用户
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public List<User> findByPage(Integer page, Integer pageSize)  throws SQLException{
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        List<User> users = null;
+        try {
+            connection = dataSource.getConnection();
+            pstmt = connection.prepareStatement("select * from table limit ?, ?");
+
+            pstmt.setString(1, String.valueOf((page - 1) * pageSize - 1));
+            pstmt.setString(2, pageSize.toString());
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                User  user = new User(rs.getString("user_id"), rs.getString("user_name"),
+                        rs.getString("user_password"), rs.getString("user_img"), rs.getString("user_profile"));
+                users.add(user);
+            }
+            return users;
         } finally {
             JdbcUtil.close(connection, pstmt);
         }
