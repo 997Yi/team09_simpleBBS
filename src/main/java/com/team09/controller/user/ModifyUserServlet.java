@@ -40,6 +40,8 @@ public class ModifyUserServlet extends HttpServlet {
         String password = null;
         String image = null;
         String profile = null;
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("userInfo");
 
         try {
             //创建ServletFileUpload对象
@@ -67,7 +69,11 @@ public class ModifyUserServlet extends HttpServlet {
 
                 }else {
                     //保存
-                    image = FileUtil.saveImg(fileItem);
+                    if(fileItem.getSize() != 0){
+                        user.setImgUrl(FileUtil.saveImg(fileItem));
+                    }else{
+                        user.setImgUrl(user.getImgUrl().split("/")[2]);
+                    }
                 }
             }
         }catch (FileUploadBase.InvalidContentTypeException e){
@@ -79,11 +85,9 @@ public class ModifyUserServlet extends HttpServlet {
         }
 
 
-        HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("userInfo");
+
         user.setId(((User) session.getAttribute("userInfo")).getId());
         user.setUsername(username);
-        user.setImgUrl(image);
         user.setProfile(profile);
         user.setPassword(password);
 

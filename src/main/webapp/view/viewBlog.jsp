@@ -24,11 +24,11 @@
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/listBlog">主页</a></li>
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/listQuintBlogs">精华帖</a></li>
-            <li class="layui-nav-item layui-this"><a href="${pageContext.request.contextPath}/view/postBlog.jsp">发布博客</a></li>
+            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/view/postBlog.jsp">发布博客</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <jstl:if test="${userInfo == null}">
-                <li class="layui-nav-item">
+                <li class="layui-nav-item layui-this">
                     <a href="${pageContext.request.contextPath}/login.jsp">
                         点击登录
                     </a>
@@ -38,10 +38,10 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;">
                         <jstl:if test="${userInfo.imgUrl == null}">
-                            <img src= "${pageContext.request.contextPath}/image/default.png" class="layui-nav-img">
+                            <img src="${pageContext.request.contextPath}/image/default.png" class="layui-nav-img">
                         </jstl:if>
                         <jstl:if test="${userInfo.imgUrl != null}">
-                            <img src= "${pageContext.request.contextPath}${userInfo.imgUrl}" class="layui-nav-img">
+                            <img src="${pageContext.request.contextPath}${userInfo.imgUrl}" class="layui-nav-img">
                         </jstl:if>
 
                             ${userInfo.username}
@@ -70,18 +70,23 @@
                         </ul>
                     </div>
                     <div class="entry-content">
-                        <p class="has-dropcap">
-                            ${requestScope.blog.context}
-                        </p>
+                        <jstl:forEach items="${content}" var="con">
+                            <p class="has-dropcap">
+                                ${con}
+                            </p>
+                        </jstl:forEach>
                     </div>
                     <div class="entry-footer">
                         <div class="post-author">
                             <div class="author-img">
                                 <jstl:if test="${requestScope.blogUser.imgUrl == null}">
-                                    <img src= "${pageContext.request.contextPath}/image/default.png" alt="PostAuthor" style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
+                                    <img src="${pageContext.request.contextPath}/image/default.png" alt="PostAuthor"
+                                         style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
                                 </jstl:if>
                                 <jstl:if test="${requestScope.blogUser.imgUrl != null}">
-                                    <img src= "${pageContext.request.contextPath}${requestScope.blogUser.imgUrl}" alt="PostAuthor" style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
+                                    <img src="${pageContext.request.contextPath}${requestScope.blogUser.imgUrl}"
+                                         alt="PostAuthor"
+                                         style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
                                 </jstl:if>
                             </div>
                             <h5>${requestScope.blogUser.username}</h5>
@@ -96,15 +101,19 @@
                                 <div class="comment-body">
                                     <div class="comment-author">
                                         <jstl:if test="${comment.value.imgUrl == null}">
-                                            <img src= "${pageContext.request.contextPath}/image/default.png" style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
+                                            <img src="${pageContext.request.contextPath}/image/default.png"
+                                                 style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
                                         </jstl:if>
                                         <jstl:if test="${comment.value.imgUrl != null}">
-                                            <img src= "${pageContext.request.contextPath}${comment.value.imgUrl}" style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
+                                            <img src="${pageContext.request.contextPath}${comment.value.imgUrl}"
+                                                 style="width: 90%; height: auto; margin: 20% 20% 0; border-radius: 50%">
                                         </jstl:if>
+                                    </div>
                                     <div class="comment-content"><h6
                                             class="comment-author">${comment.value.username}</h6>
                                         <p>${comment.key.content}</p>
-                                        <div class="comment-footer"><span class="date">${comment.key.time}</span></div>
+                                        <div class="comment-footer"><span class="date">${comment.key.time}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -114,18 +123,17 @@
                     <jstl:if test="${sessionScope.userInfo != null}">
                         <h4 class="template-title">Leave your comment</h4>
                         <div class="comment-form">
-                            <form action="#">
-                                <div class="row">
-                                    <form method="post"
-                                          action="/user/PostCommentServlet?blogId=${requestScope.blog.id}">
-                                        <div class="col-12"><textarea placeholder="Your message here"
-                                                                      name="content"></textarea></div>
-                                        <div class="col-12">
-                                            <button type="submit">Post</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </form>
+                            <div class="row">
+                                <form method="get"
+                                      action="${pageContext.request.contextPath}/user/PostCommentServlet">
+                                    <div class="col-12"><textarea placeholder="Your message here"
+                                                                  name="content"></textarea></div>
+                                    <input type="hidden" name="blogId" value="${requestScope.blog.id}" />
+                                    <div class="col-12">
+                                        <button type="submit">Post</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </jstl:if>
                 </div>
