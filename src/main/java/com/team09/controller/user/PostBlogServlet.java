@@ -49,14 +49,12 @@ public class PostBlogServlet extends HttpServlet {
                 1, content,false, false, user.getId());
         if(blogService.addBlogs(blog)){
             //添加成功
-
-            //TODO 跳转
             session.setAttribute("msg", "添加成功");
+            resp.sendRedirect(req.getContextPath() + "/user/listBlog?id=" + user.getId());
         }else{
             //添加失败
-
-            //TODO 跳转
             session.setAttribute("msg", "添加失败");
+            resp.sendRedirect(req.getContextPath() + "/view/postBlog.jsp");
         }
 
         resp.sendRedirect(req.getContextPath() + "/index.jsp");

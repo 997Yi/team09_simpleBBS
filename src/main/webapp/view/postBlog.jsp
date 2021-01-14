@@ -29,28 +29,26 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src=
-                         <jstl:if test="${userInfo.imgUrl == null}">
-                                 ${pageContext.request.contextPath}"/image/default.png"
+                    <jstl:if test="${userInfo.imgUrl == null}">
+                        <img src= "${pageContext.request.contextPath}/image/default.png" class="layui-nav-img">
                     </jstl:if>
                     <jstl:if test="${userInfo.imgUrl != null}">
-                        ${userInfo.imgUrl}
+                        <img src= "${pageContext.request.contextPath}${userInfo.imgUrl}" class="layui-nav-img">
                     </jstl:if>
 
-                         class="layui-nav-img">
                     ${userInfo.username}
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">修改信息</a></dd>
-                    <dd><a href="">查看我的博客</a></dd>
+                    <dd><a href="${pageContext.request.contextPath}/view/modifyInfo.jsp">修改信息</a></dd>
+                    <dd><a href="${pageContext.request.contextPath}/user/listBlog?id=${userInfo.id}">查看我的博客</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="logout">退出登陆</a></li>
+            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/logout">退出登陆</a></li>
         </ul>
     </div>
 
     <div style="padding:50px 20%; background-color: #f5f5f5;">
-        <form class="layui-form" action="/user/postBlog">
+        <form class="layui-form" action="${pageContext.request.contextPath}/user/postBlog" method="post">
             <div class="layui-form-item">
                 <label class="layui-form-label">标题</label>
                 <div class="layui-input-block">
@@ -61,7 +59,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">关键字</label>
                 <div class="layui-input-block">
-                    <input type="text" name="keyword" required lay-verify="required" placeholder="请输入文章关键字"
+                    <input type="text" name="keywords" required lay-verify="required" placeholder="请输入文章关键字"
                            autocomplete="off" class="layui-input">
                 </div>
             </div>
@@ -92,8 +90,6 @@
 
         //监听提交
         form.on('submit(formDemo)', function (data) {
-            layer.msg(JSON.stringify(data.field));
-            return false;
         });
     });
 </script>

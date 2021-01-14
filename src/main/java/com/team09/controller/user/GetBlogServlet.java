@@ -47,7 +47,9 @@ public class GetBlogServlet extends HttpServlet {
 
             //返回博客作者信息
             UserService userService = UserServiceImpl.getInstance();
-            request.setAttribute("blogUser",userService.getUserById(blog.getUserId()));
+            User user = userService.getUserById(blog.getUserId());
+            user.setImgUrl(FileUtil.getImg(user.getImgUrl()));
+            request.setAttribute("blogUser",user);
 
 
             //进入service层根据博客id获取用户评论
@@ -64,10 +66,10 @@ public class GetBlogServlet extends HttpServlet {
             request.setAttribute("blogComment",map);
 
             //TODO 跳转至显示详细帖子内容页面
-            request.getRequestDispatcher("../view/viewBlog.jsp").forward(request, response);
+            request.getRequestDispatcher("/view/viewBlog.jsp").forward(request, response);
         } else {
             //TODO 跳转至原本位置
-            response.sendRedirect("../view/index.jsp");
+            response.sendRedirect(request.getContextPath() + "/user/listBlog");
         }
     }
 
