@@ -168,7 +168,7 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
             connection = dataSource.getConnection();
 
             statement = connection.prepareStatement("update blog_tb set blog_title=?, blog_content=?, blog_keywords=?" +
-                    ", blog_clicks=?, blog_time=?, top=?, quintessence=?, uuser_id=? where blog_id = ?");
+                    ", blog_clicks=?, blog_time=?, top=?, quintessence=?, user_id=? where blog_id = ?");
             statement.setString(1, blog.getTitle());
             statement.setString(2, blog.getContext());
             statement.setString(3, blog.getKeyWords());

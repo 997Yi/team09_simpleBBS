@@ -41,9 +41,15 @@ public class GetBlogServlet extends HttpServlet {
         BlogService blogService = BlogServiceImpl.getInstance();
         Blog blog = blogService.getBlogById(blogId);
         if (blog != null) {
+            //博客的浏览量增加
+            blog.setClicks(blog.getClicks()+1);
+            blogService.updateBlogs(blog);
+
+
             //将博客详细信息返回 使用request
             request.setAttribute("blog", blog);
             request.setAttribute("content", FileUtil.readContent(blog.getContext()));
+
 
             //返回博客作者信息
             UserService userService = UserServiceImpl.getInstance();
@@ -59,11 +65,15 @@ public class GetBlogServlet extends HttpServlet {
             //进入service层获取用户信息
             Map<Comment,User> map = new HashMap<Comment,User>();
             for(Comment c: comment){
-                map.put(c,userService.getUserById(c.getUserId()));
+                User user1 = userService.getUserById(c.getUserId());
+                user1.setImgUrl(FileUtil.getImg(user1.getImgUrl()));
+                map.put(c,user1);
             }
 
             //将博客评论和对应用户信息返回 使用request
             request.setAttribute("blogComment",map);
+
+
 
             //TODO 跳转至显示详细帖子内容页面
             request.getRequestDispatcher("/view/viewBlog.jsp").forward(request, response);

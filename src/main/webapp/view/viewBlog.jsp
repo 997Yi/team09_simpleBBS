@@ -38,10 +38,10 @@
                 <li class="layui-nav-item">
                     <a href="javascript:;">
                         <jstl:if test="${userInfo.imgUrl == null}">
-                            <img src= "${pageContext.request.contextPath}/image/default.png" class="layui-nav-img">
+                            <img src="${pageContext.request.contextPath}/image/default.png" class="layui-nav-img">
                         </jstl:if>
                         <jstl:if test="${userInfo.imgUrl != null}">
-                            <img src= "${pageContext.request.contextPath}${userInfo.imgUrl}" class="layui-nav-img">
+                            <img src="${pageContext.request.contextPath}${userInfo.imgUrl}" class="layui-nav-img">
                         </jstl:if>
 
                             ${userInfo.username}
@@ -80,10 +80,13 @@
                         <div class="post-author">
                             <div class="author-img">
                                 <jstl:if test="${requestScope.blogUser.imgUrl == null}">
-                                    <img src= "${pageContext.request.contextPath}/image/default.png" alt="PostAuthor" style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
+                                    <img src="${pageContext.request.contextPath}/image/default.png" alt="PostAuthor"
+                                         style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
                                 </jstl:if>
                                 <jstl:if test="${requestScope.blogUser.imgUrl != null}">
-                                    <img src= "${pageContext.request.contextPath}${requestScope.blogUser.imgUrl}" alt="PostAuthor" style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
+                                    <img src="${pageContext.request.contextPath}${requestScope.blogUser.imgUrl}"
+                                         alt="PostAuthor"
+                                         style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
                                 </jstl:if>
                             </div>
                             <h5>${requestScope.blogUser.username}</h5>
@@ -98,15 +101,19 @@
                                 <div class="comment-body">
                                     <div class="comment-author">
                                         <jstl:if test="${comment.value.imgUrl == null}">
-                                            <img src= "${pageContext.request.contextPath}/image/default.png" style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
+                                            <img src="${pageContext.request.contextPath}/image/default.png"
+                                                 style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
                                         </jstl:if>
                                         <jstl:if test="${comment.value.imgUrl != null}">
-                                            <img src= "${pageContext.request.contextPath}${comment.value.imgUrl}" style="width: 60%; height: auto; margin: 20% 20% 0; border-radius: 50%">
+                                            <img src="${pageContext.request.contextPath}${comment.value.imgUrl}"
+                                                 style="width: 90%; height: auto; margin: 20% 20% 0; border-radius: 50%">
                                         </jstl:if>
+                                    </div>
                                     <div class="comment-content"><h6
                                             class="comment-author">${comment.value.username}</h6>
                                         <p>${comment.key.content}</p>
-                                        <div class="comment-footer"><span class="date">${comment.key.time}</span></div>
+                                        <div class="comment-footer"><span class="date">${comment.key.time}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
