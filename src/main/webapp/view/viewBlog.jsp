@@ -24,11 +24,11 @@
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/listBlog">主页</a></li>
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/listQuintBlogs">精华帖</a></li>
-            <li class="layui-nav-item layui-this"><a href="${pageContext.request.contextPath}/view/postBlog.jsp">发布博客</a></li>
+            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/view/postBlog.jsp">发布博客</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <jstl:if test="${userInfo == null}">
-                <li class="layui-nav-item">
+                <li class="layui-nav-item layui-this">
                     <a href="${pageContext.request.contextPath}/login.jsp">
                         点击登陆
                     </a>
