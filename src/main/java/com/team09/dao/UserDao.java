@@ -65,4 +65,10 @@ public interface UserDao {
      * @return
      */
     List<User> findByPage(Integer page, Integer pageSize)  throws SQLException;
+
+    /**
+     * 查看用户总数
+     * @return
+     */
+    int getUserCount() throws SQLException;
 }

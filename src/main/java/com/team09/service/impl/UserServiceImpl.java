@@ -110,4 +110,18 @@ public class UserServiceImpl implements UserService {
         }
         return null;
     }
+
+    /**
+     * 查看用户总数
+     * @return
+     */
+    @Override
+    public int getUserCount(){
+        try {
+            return userDao.getUserCount();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }

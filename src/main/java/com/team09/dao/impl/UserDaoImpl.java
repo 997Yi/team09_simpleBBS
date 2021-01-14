@@ -183,4 +183,22 @@ public class UserDaoImpl extends BaseDao implements UserDao {
             JdbcUtil.close(connection, pstmt);
         }
     }
+
+    /**
+     * 查看用户总数
+     * @return
+     */
+    public int getUserCount() throws SQLException{
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            connection = dataSource.getConnection();
+            pstmt = connection.prepareStatement("select count(user_id) as count_id from user_tb");
+            rs = pstmt.executeQuery();
+            return rs.getInt("count_id");
+        } finally {
+            JdbcUtil.close(connection, pstmt);
+        }
+    }
 }
