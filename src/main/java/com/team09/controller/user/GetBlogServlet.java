@@ -65,6 +65,10 @@ public class GetBlogServlet extends HttpServlet {
             //将博客评论和对应用户信息返回 使用request
             request.setAttribute("blogComment",map);
 
+            //博客的浏览量增加
+            blog.setClicks(blog.getClicks()+1);
+            blogService.updateBlogs(blog);
+
             //TODO 跳转至显示详细帖子内容页面
             request.getRequestDispatcher("/view/viewBlog.jsp").forward(request, response);
         } else {

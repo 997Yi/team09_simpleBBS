@@ -34,7 +34,7 @@ public class PostCommentServlet extends HttpServlet {
         commentService.addComment(new Comment(content, "正常", date, userId, blogId));
 
         //TODO 完成后返回到博客评论区
-        response.sendRedirect("");
+        response.sendRedirect("/user/lookBlog?blogId="+blogId);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
