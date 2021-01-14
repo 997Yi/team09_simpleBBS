@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -164,13 +165,13 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
-        List<User> users = null;
+        List<User> users = new ArrayList<>();
         try {
             connection = dataSource.getConnection();
-            pstmt = connection.prepareStatement("select * from table limit ?, ?");
+            pstmt = connection.prepareStatement("select * from user_tb limit ?, ?;");
 
-            pstmt.setString(1, String.valueOf((page - 1) * pageSize - 1));
-            pstmt.setString(2, pageSize.toString());
+            pstmt.setInt(1, (page-1)  * pageSize);
+            pstmt.setInt(2, pageSize);
             rs = pstmt.executeQuery();
             while (rs.next()){
                 User  user = new User(rs.getString("user_id"), rs.getString("user_name"),

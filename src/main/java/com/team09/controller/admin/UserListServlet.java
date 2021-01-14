@@ -22,7 +22,7 @@ public class UserListServlet extends HttpServlet {
         int page=(sPage==null||sPage.equals("")) ?1:Integer.parseInt(sPage);
         int pageSize=4;
         req.setAttribute("page",page);
-        req.setAttribute("pageSize",pageSize);
+        req.setAttribute("limit",pageSize);
 
 
         UserService userService=UserServiceImpl.getInstance();
