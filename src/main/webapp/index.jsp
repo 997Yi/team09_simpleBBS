@@ -35,7 +35,7 @@
             <jstl:if test="${userInfo == null}">
                 <li class="layui-nav-item">
                     <a href="${pageContext.request.contextPath}/login.jsp">
-                        点击登陆
+                        点击登录
                     </a>
                 </li>
             </jstl:if>
@@ -56,7 +56,7 @@
                         <dd><a href="${pageContext.request.contextPath}/user/listBlog?id=${userInfo.id}">查看我的博客</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/logout">退出登陆</a></li>
+                <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
             </jstl:if>
         </ul>
     </div>
