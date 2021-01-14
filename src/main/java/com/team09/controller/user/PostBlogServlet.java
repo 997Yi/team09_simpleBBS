@@ -56,7 +56,5 @@ public class PostBlogServlet extends HttpServlet {
             session.setAttribute("msg", "添加失败");
             resp.sendRedirect(req.getContextPath() + "/view/postBlog.jsp");
         }
-
-        resp.sendRedirect(req.getContextPath() + "/index.jsp");
     }
 }

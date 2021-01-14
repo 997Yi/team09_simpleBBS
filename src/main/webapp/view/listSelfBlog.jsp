@@ -64,7 +64,7 @@
                                 <p>${blog.value.username}</p>
                             </div>
                         </div><div class="blog-info">
-                        <div class="blog-block-title"><a href="">${blog.key.title}</a></div>
+                        <div class="blog-block-title"><a href="${pageContext.request.contextPath}/user/lookBlog?blogId=${blog.key.id}">${blog.key.title}</a></div>
                         <div class="blog-block-keywords">${blog.key.keyWords}</div>
                     </div>
                     </div>

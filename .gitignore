@@ -1,16 +1,4 @@
 /team09_simpleBBS.iml
 /.idea/
 /src/test/
-/target/classes/
-/target/generated-sources/
-/target/generated-test-sources/
-/target/test-classes/
-/target/team09_simpleBBS-1.0-SNAPSHOT/layui/
-/target/team09_simpleBBS-1.0-SNAPSHOT/META-INF/
-/target/team09_simpleBBS-1.0-SNAPSHOT/view/
-/target/team09_simpleBBS-1.0-SNAPSHOT/index.jsp
-/target/team09_simpleBBS-1.0-SNAPSHOT/login.jsp
-/target/team09_simpleBBS-1.0-SNAPSHOT/register.jsp
-/target/team09_simpleBBS-1.0-SNAPSHOT/WEB-INF/classes/
-/target/team09_simpleBBS-1.0-SNAPSHOT/WEB-INF/lib/
-/target/team09_simpleBBS-1.0-SNAPSHOT/WEB-INF/web.xml
+/target/
