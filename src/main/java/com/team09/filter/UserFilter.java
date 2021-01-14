@@ -7,7 +7,8 @@ import java.io.IOException;
 
 @WebFilter(urlPatterns = {
         "/user/delBlog", "/user/delComment", "/user/modifyUser",
-        "/user/postBlog", "/user/PostCommentServlet", "/view/postBlog.jsp"})
+        "/user/postBlog", "/user/PostCommentServlet", "/view/postBlog.jsp",
+        "/view/listSelfBlog.jsp", "/view/modifyBlog.jsp"})
 public class UserFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }
