@@ -5,6 +5,8 @@ import org.apache.commons.fileupload.FileItem;
 
 import javax.servlet.jsp.PageContext;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author team09
@@ -38,17 +40,17 @@ public class FileUtil {
         return fileName;
     }
 
-    public static String readContent(String fileName) throws IOException {
+    public static List<String> readContent(String fileName) throws IOException {
 
         BufferedReader reader = new BufferedReader(new FileReader(PATH + "/WEB-INF/content/"+ fileName));
 
-        StringBuffer stringBuffer = new StringBuffer();
+        List<String> list = new ArrayList<>();
         String line = null;
         while((line = reader.readLine()) != null){
-            stringBuffer.append(line);
+            list.add(line);
         }
 
-        return stringBuffer.toString();
+        return list;
     }
 
 
