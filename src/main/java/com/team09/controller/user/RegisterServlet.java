@@ -35,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
 
         //判断验证码是否正确(从session中获取验证码)
         HttpSession session = request.getSession();
-        String rightCode = ((String) session.getAttribute("validCode")).toLowerCase();
+        String rightCode = (String) session.getAttribute("validCode");
         session.removeAttribute("validCode");
 
         if (rightCode.equals(verCode)) {
