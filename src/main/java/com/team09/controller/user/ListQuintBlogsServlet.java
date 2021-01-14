@@ -38,15 +38,32 @@ public class ListQuintBlogsServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Blog> quintBlogs = blogService.getQuintBlogs();
-        Map<Blog, User> map = new HashMap<>();
-        for(Blog blog : quintBlogs){
-            User user = userService.getUserById(blog.getUserId());
-            user.setImgUrl(FileUtil.getImg(user.getImgUrl()));
-            map.put(blog, user);
+        String page = req.getParameter("page");
+        HttpSession session = req.getSession();
+
+        if(page == null || page.equals("")){
+            page = "1";
         }
 
-        HttpSession session = req.getSession();
+        int pageNum = Integer.parseInt(page);
+
+        List<Blog> quintBlogs = blogService.getQuintBlogs();
+
+        if(pageNum - 1 > quintBlogs.size() / 5){
+            session.setAttribute("mag", "非法分页参数");
+            req.getRequestDispatcher(req.getContextPath() + "/user/listBlog").forward(req, resp);
+            return;
+        }
+
+        Map<Blog, User> map = new HashMap<>();
+        //按排序后的顺序获取单页数据
+        for(int i = (pageNum - 1) * 5; i < Math.min(quintBlogs.size(), i + 5); i++){
+            Blog blog = quintBlogs.get(i);
+            User userById = userService.getUserById(blog.getUserId());
+            userById.setImgUrl(FileUtil.getImg(userById.getImgUrl()));
+            map.put(blog, userById);
+        }
+
         session.setAttribute("blogList", map);
 
         req.getRequestDispatcher("/view/quintessenceBlogs.jsp").forward(req, resp);

@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.*;
 
@@ -27,17 +28,19 @@ public class ListBlogServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
+        String page = request.getParameter("page");
+
+        HttpSession session = request.getSession();
 
         List<Blog> blogs;
         String url = "/index.jsp";
+
         if(id == null || id.equals("")){
             blogs = blogService.getAllBlogs();
         } else{
             blogs = blogService.getBlogByUserId(id);
             url = "/view/listSelfBlog.jsp";
         }
-        //获取数据库中所有博客
-
 
 
         // 把精华和置顶博客排序放在前面
@@ -56,18 +59,33 @@ public class ListBlogServlet extends HttpServlet {
             });
         }
 
+        if(page == null || page == ""){
+            page = "1";
+        }
+        //获取页数值
+        int pageNum = Integer.parseInt(page);
+        //当前页数超过数据数 非法查询
+        if(pageNum - 1 > blogs.size() / 5){
+            session.setAttribute("mag", "非法分页参数");
+            request.getRequestDispatcher(url).forward(request, response);
+            return;
+        }
+
         //把博客和发博客用户信息利用map作为映射同时保存在session中
         Map<Blog, User> map = new HashMap<>();
         UserService userService = UserServiceImpl.getInstance();
 
-        for (Blog blog : blogs) {
+        //按排序后的顺序获取单页数据
+        for(int i = (pageNum - 1) * 5; i < Math.min(blogs.size(), i + 5); i++){
+            Blog blog = blogs.get(i);
             User userById = userService.getUserById(blog.getUserId());
             userById.setImgUrl(FileUtil.getImg(userById.getImgUrl()));
             map.put(blog, userById);
         }
 
         //将所有博客返回给前端 存储在session中
-        request.getSession().setAttribute("mapBlogs", map);
+        session.setAttribute("mapBlogs", map);
+        session.setAttribute("blogNums", blogs.size());
 
         request.getRequestDispatcher(url).forward(request, response);
     }

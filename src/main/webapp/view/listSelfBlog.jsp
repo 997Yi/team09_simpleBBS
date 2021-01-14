@@ -81,18 +81,39 @@
                     </div>
                 </div>
             </jstl:forEach>
+            <jstl:if test="${blogNums > 5}">
+                <div id="pageSelector"></div>
+            </jstl:if>
         </div>
     </div>
 
 </div>
 <script src="${pageContext.request.contextPath}/layui/layui.js"></script>
 <script>
-    layui.use(['form', 'element'], function () {
+    layui.use(['form', 'element', 'laypage'], function () {
         var form = layui.form;
+        var laypage = layui.laypage;
 
         //监听提交
         form.on('submit(formDemo)', function (data) {
         });
+
+        laypage.render({
+            elem: 'pageSelector'
+            ,count: ${blogNums}
+            ,limit: 5
+            ,curr: 1
+            ,group: 3
+            ,prev: "<i class='layui-icon layui-icon-prev'></i>"
+            ,next: "<i class='layui-icon layui-icon-next'></i>"
+            ,jump: function (obj, first){
+                if(!first){
+                    //window.location.href=''
+                    console.log(obj.curr);
+                    console.log(obj.limit);
+                }
+            }
+        })
     });
 </script>
 <jstl:if test="${msg != null}">
