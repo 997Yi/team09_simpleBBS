@@ -42,8 +42,8 @@ public class GetBlogServlet extends HttpServlet {
         Blog blog = blogService.getBlogById(blogId);
         if (blog != null) {
             //将博客详细信息返回 使用request
-            blog.setContext(FileUtil.readContent(blog.getContext()));
             request.setAttribute("blog", blog);
+            request.setAttribute("content", FileUtil.readContent(blog.getContext()));
 
             //返回博客作者信息
             UserService userService = UserServiceImpl.getInstance();

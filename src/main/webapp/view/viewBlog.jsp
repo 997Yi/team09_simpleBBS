@@ -70,9 +70,11 @@
                         </ul>
                     </div>
                     <div class="entry-content">
-                        <p class="has-dropcap">
-                            ${requestScope.blog.context}
-                        </p>
+                        <jstl:forEach items="${content}" var="con">
+                            <p class="has-dropcap">
+                                ${con}
+                            </p>
+                        </jstl:forEach>
                     </div>
                     <div class="entry-footer">
                         <div class="post-author">
