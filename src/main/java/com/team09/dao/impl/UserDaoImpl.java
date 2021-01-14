@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -146,6 +148,55 @@ public class UserDaoImpl extends BaseDao implements UserDao {
             int rows = pstmt.executeUpdate();
 
             return rows == 1;
+        } finally {
+            JdbcUtil.close(connection, pstmt);
+        }
+    }
+
+    /**
+     * 分页查询用户
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public List<User> findByPage(Integer page, Integer pageSize)  throws SQLException{
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+
+        List<User> users = new ArrayList<>();
+        try {
+            connection = dataSource.getConnection();
+            pstmt = connection.prepareStatement("select * from user_tb limit ?, ?;");
+
+            pstmt.setInt(1, (page-1)  * pageSize);
+            pstmt.setInt(2, pageSize);
+            rs = pstmt.executeQuery();
+            while (rs.next()){
+                User  user = new User(rs.getString("user_id"), rs.getString("user_name"),
+                        rs.getString("user_password"), rs.getString("user_img"), rs.getString("user_profile"));
+                users.add(user);
+            }
+            return users;
+        } finally {
+            JdbcUtil.close(connection, pstmt);
+        }
+    }
+
+    /**
+     * 查看用户总数
+     * @return
+     */
+    public int getUserCount() throws SQLException{
+        Connection connection = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        try {
+            connection = dataSource.getConnection();
+            pstmt = connection.prepareStatement("select count(user_id) as count_id from user_tb");
+            rs = pstmt.executeQuery();
+            return rs.getInt("count_id");
         } finally {
             JdbcUtil.close(connection, pstmt);
         }

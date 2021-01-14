@@ -20,7 +20,7 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item  layui-this">
                 <a href="${pageContext.request.contextPath}/login.jsp">
-                    点击登陆
+                    点击登录
                 </a>
             </li>
         </ul>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="layui-input-block" style="margin-top: 40px; font-size: 14px; margin-left: 0px; text-align: center;">
                     已有账号？
-                    <a href="login.jsp">点击登陆</a>
+                    <a href="login.jsp">点击登录</a>
                 </div>
             </div>
         </form>

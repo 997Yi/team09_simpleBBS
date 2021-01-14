@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>登陆</title>
+    <title>登录</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/layui/css/layui.css">
 </head>
 
@@ -21,14 +21,14 @@
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item  layui-this">
                 <a href="${pageContext.request.contextPath}/login.jsp">
-                    点击登陆
+                    点击登录
                 </a>
             </li>
         </ul>
     </div>
 
     <div class="layui-input-block" style="border: 1px solid #e0e0e0; width: 50%; margin: 150px auto; padding: 30px 0 10px 0;background-color: #f8f8f8;">
-        <h2 style="text-align: center; margin-bottom: 30px">登陆页面</h2>
+        <h2 style="text-align: center; margin-bottom: 30px">登录页面</h2>
         <form class="layui-form" action="${pageContext.request.contextPath}/login" method="post" style="width: 80%; margin: 0 auto">
             <div style="margin: 0 auto; width: 60%" >
                 <div class="layui-form-item" >
@@ -52,7 +52,7 @@
                 <div class="layui-form-item">
                 </div>
                 <div class="layui-input-block" style="margin-left: 0px; text-align: center;">
-                    <button class="layui-btn" lay-submit lay-filter="formDemo">登陆</button>
+                    <button class="layui-btn" lay-submit lay-filter="formDemo">登录</button>
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
                 <div class="layui-input-block" style="margin-top: 40px; font-size: 14px; margin-left: 0px; text-align: center;">

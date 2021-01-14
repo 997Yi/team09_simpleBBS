@@ -51,5 +51,18 @@ public interface UserService {
      * @return
      */
     public boolean updateUser(User user);
-    List<User> findByPage(int page, int pageSize);
+
+    /**
+     * 分页查询用户
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    List<User> findByPage(Integer page, Integer pageSize);
+
+    /**
+     * 查看用户总数
+     * @return
+     */
+    int getUserCount();
 }

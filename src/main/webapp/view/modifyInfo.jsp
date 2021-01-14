@@ -65,7 +65,7 @@
                     <dd><a href="${pageContext.request.contextPath}/user/listBlog?id=${userInfo.id}">查看我的博客</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/logout">退出登陆</a></li>
+            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
         </ul>
     </div>
     <div class="layui-input-block" style="border: 1px solid #e0e0e0; width: 50%; margin: 150px auto; padding: 30px 0 10px 0;background-color: #f8f8f8;">
