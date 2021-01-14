@@ -26,7 +26,7 @@ public class RegisterServlet extends HttpServlet {
         //获取表单数据
         String username = request.getParameter("username");
         String passwd = request.getParameter("password");
-        String verCode = request.getParameter("validCode");
+        String verCode = request.getParameter("validCode").toLowerCase();
 
         //结果
         boolean result = false;
@@ -35,7 +35,7 @@ public class RegisterServlet extends HttpServlet {
 
         //判断验证码是否正确(从session中获取验证码)
         HttpSession session = request.getSession();
-        String rightCode = ((String) session.getAttribute("validCode")).toLowerCase();
+        String rightCode = (String) session.getAttribute("validCode");
         session.removeAttribute("validCode");
 
         if (rightCode.equals(verCode)) {

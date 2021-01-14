@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@WebFilter("/admin/*")
+@WebFilter(urlPatterns = {"/admin/*", "/view/admin/*"})
 public class AdminFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }

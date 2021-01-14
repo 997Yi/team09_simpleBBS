@@ -14,7 +14,7 @@
     <title>simpleBBS - 发布博客</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/layui/css/layui.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/view/css/blog.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/view/css/postBlog.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/view/css/viewBlog.css">
 </head>
 <body class="layui-layout-body" style="overflow: auto">
 <div class="layui-layout layui-layout-admin">
