@@ -18,7 +18,7 @@ public class TopServlet extends HttpServlet {
         String blogId = request.getParameter("blogId");
 
         Blog blog = blogService.getBlogById(blogId);
-        blog.setTop(true);
+        blog.setTop(!blog.isTop());
         blogService.updateBlogs(blog);
     }
 

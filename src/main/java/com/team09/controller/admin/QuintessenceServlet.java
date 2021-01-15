@@ -18,7 +18,7 @@ public class QuintessenceServlet extends HttpServlet {
         String blogId = request.getParameter("blogId");
 
         Blog blog = blogService.getBlogById(blogId);
-        blog.setQuintessence(true);
+        blog.setQuintessence(!blog.isQuintessence());
         blogService.updateBlogs(blog);
     }
 
