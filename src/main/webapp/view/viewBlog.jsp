@@ -123,18 +123,17 @@
                     <jstl:if test="${sessionScope.userInfo != null}">
                         <h4 class="template-title">Leave your comment</h4>
                         <div class="comment-form">
-                            <form action="#">
-                                <div class="row">
-                                    <form method="post"
-                                          action="/user/PostCommentServlet?blogId=${requestScope.blog.id}">
-                                        <div class="col-12"><textarea placeholder="Your message here"
-                                                                      name="content"></textarea></div>
-                                        <div class="col-12">
-                                            <button type="submit">Post</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </form>
+                            <div class="row">
+                                <form method="get"
+                                      action="${pageContext.request.contextPath}/user/PostCommentServlet">
+                                    <div class="col-12"><textarea placeholder="Your message here"
+                                                                  name="content"></textarea></div>
+                                    <input type="hidden" name="blogId" value="${requestScope.blog.id}" />
+                                    <div class="col-12">
+                                        <button type="submit">Post</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </jstl:if>
                 </div>
