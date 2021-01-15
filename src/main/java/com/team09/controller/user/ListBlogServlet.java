@@ -49,15 +49,20 @@ public class ListBlogServlet extends HttpServlet {
                 @Override
                 public int compare(Blog o1, Blog o2) {
                     if (o1.isQuintessence() != o2.isQuintessence()) {
-                        return o1.isQuintessence() == true ? 1 : -1;
+                        return o1.isQuintessence() == true ? -1 : 1;
                     }
                     if (o1.isTop() != o2.isTop()) {
-                        return o1.isTop() == true ? 1 : -1;
+                        return o1.isTop() == true ? -1 : 1;
                     }
                     return 0;
                 }
             });
         }
+
+        for(Blog blog:blogs){
+            System.out.println(blog.getTitle());
+        }
+        System.out.println("--------------------");
 
         if(page == null || page == ""){
             page = "1";
