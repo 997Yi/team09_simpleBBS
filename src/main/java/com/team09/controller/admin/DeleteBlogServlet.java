@@ -24,6 +24,9 @@ public class DeleteBlogServlet extends HttpServlet {
             blogService.deleteBlogs(blog);
         }
 
+        String page = request.getParameter("page");
+        response.sendRedirect(request.getContextPath() + "/" + page);
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
