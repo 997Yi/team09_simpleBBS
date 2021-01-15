@@ -78,37 +78,37 @@
                         <h2 class="title">
                             ${requestScope.blog.title}
                         </h2>
-                        <div class="admin-button" style="float: right">
-                            <jstl:if test="${adminInfo != null}">
-                                <jstl:if test="${requestScope.blog.top != true}">
-                                    <button type="button" class="layui-btn layui-btn-primary">
-                                        <a href="${pageContext.request.contextPath}/admin/top?blogId=${requestScope.blog.id}&page=user/lookBlog">置顶</a>
-                                    </button>
-                                </jstl:if>
-                                <jstl:if test="${requestScope.blog.top == true}">
-                                    <button type="button" class="layui-btn layui-btn-primary" >
-                                        <a href="${pageContext.request.contextPath}/admin/top?blogId=${requestScope.blog.id}&page=user/lookBlog">取消置顶</a>
-                                    </button>
-                                </jstl:if>
-                                <jstl:if test="${requestScope.blog.quintessence != true}">
-                                    <button type="button" class="layui-btn layui-btn-primary">
-                                        <a href="${pageContext.request.contextPath}/admin/quintessence?blogId=${requestScope.blog.id}&page=user/lookBlog">精华</a>
-                                    </button>
-                                </jstl:if>
-                                <jstl:if test="${requestScope.blog.quintessence == true}">
-                                    <button type="button" class="layui-btn layui-btn-primary">
-                                        <a href="${pageContext.request.contextPath}/admin/quintessence?blogId=${requestScope.blog.id}&page=user/lookBlog">取消精华</a>
-                                    </button>
-                                </jstl:if>
-                                <button type="button" class="layui-btn layui-btn-primary">
-                                    <a href="${pageContext.request.contextPath}/admin/deleteBlog?blogId=${requestScope.blog.id}&page=user/lookBlog">删除</a>
-                                </button>
-                            </jstl:if>
-                        </div>
                         <ul class="post-meta">
                             <li>${requestScope.blog.time}</li>
-                            <li>${requestScope.requestScope.blogWords}</li>
+                            <li>${requestScope.blog.keyWords}</li>
                         </ul>
+                    </div>
+                    <div class="admin-button" style="float: right">
+                        <jstl:if test="${adminInfo != null}">
+                            <jstl:if test="${requestScope.blog.top != true}">
+                                <button type="button" class="layui-btn layui-btn-primary">
+                                    <a href="${pageContext.request.contextPath}/admin/top?blogId=${requestScope.blog.id}&page=user/lookBlog?blogId=${requestScope.blog.id}">置顶</a>
+                                </button>
+                            </jstl:if>
+                            <jstl:if test="${requestScope.blog.top == true}">
+                                <button type="button" class="layui-btn layui-btn-primary" >
+                                    <a href="${pageContext.request.contextPath}/admin/top?blogId=${requestScope.blog.id}&page=user/lookBlog?blogId=${requestScope.blog.id}">取消置顶</a>
+                                </button>
+                            </jstl:if>
+                            <jstl:if test="${requestScope.blog.quintessence != true}">
+                                <button type="button" class="layui-btn layui-btn-primary">
+                                    <a href="${pageContext.request.contextPath}/admin/quintessence?blogId=${requestScope.blog.id}&page=user/lookBlog?blogId=${requestScope.blog.id}">精华</a>
+                                </button>
+                            </jstl:if>
+                            <jstl:if test="${requestScope.blog.quintessence == true}">
+                                <button type="button" class="layui-btn layui-btn-primary">
+                                    <a href="${pageContext.request.contextPath}/admin/quintessence?blogId=${requestScope.blog.id}&page=user/lookBlog?blogId=${requestScope.blog.id}">取消精华</a>
+                                </button>
+                            </jstl:if>
+                            <button type="button" class="layui-btn layui-btn-primary">
+                                <a href="${pageContext.request.contextPath}/admin/deleteBlog?blogId=${requestScope.blog.id}&page=x">删除</a>
+                            </button>
+                        </jstl:if>
                     </div>
                     <div class="entry-content">
                         <jstl:forEach items="${content}" var="con">
