@@ -59,11 +59,6 @@ public class ListBlogServlet extends HttpServlet {
             });
         }
 
-        for(Blog blog:blogs){
-            System.out.println(blog.getTitle());
-        }
-        System.out.println("--------------------");
-
         if(page == null || page == ""){
             page = "1";
         }
