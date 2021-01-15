@@ -150,6 +150,11 @@ public class BlogDaoImpl extends BaseDao implements BlogDao {
         try{
             connection = dataSource.getConnection();
 
+            statement = connection.prepareStatement("delete from comment_tb where blog_id = ?");
+            statement.setString(1, blogId);
+            statement.executeUpdate();
+            statement.close();
+
             statement = connection.prepareStatement("delete from blog_tb where blog_id = ?");
             statement.setString(1, blogId);
 

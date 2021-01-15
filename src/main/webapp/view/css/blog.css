@@ -40,14 +40,15 @@
     display: inline-block;
     width: 70%;
     vertical-align: middle;
+
 }
+
 
 .blog-block-title{
     font-size: 30px;
     color: #333333;
     height: 40px;
     line-height: 40px;
-    width: 80%;
 }
 
 .blog-block-keywords{
@@ -55,7 +56,6 @@
     color: #333333;
     font-size: 18px;
     line-height: 26px;
-    width: 80%;
 }
 
 .blog-block-time, .blog-block-clicks, .blog-block-top, .blog-block-quintessence{

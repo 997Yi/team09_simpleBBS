@@ -69,8 +69,13 @@
                                     <p>${blog.value.username}</p>
                                 </div>
                             </div><div class="blog-info">
-                            <div class="blog-block-title"><a href="${pageContext.request.contextPath}/user/lookBlog?blogId=${blog.key.id}">${blog.key.title}</a></div>
-                            <div class="blog-block-keywords">${blog.key.keyWords}</div>
+                            <div style="width: 80%; display: inline-block">
+                                <div class="blog-block-title"><a href="${pageContext.request.contextPath}/user/lookBlog?blogId=${blog.key.id}">${blog.key.title}</a></div>
+                                <div class="blog-block-keywords">${blog.key.keyWords}</div>
+                            </div><div style="width: 20%; display: inline-block">
+                                <a href=" " class="layui-btn layui-btn-primary">修改博客</a><br><br>
+                                <a href="${pageContext.request.contextPath}/user/delBlog?blogId=${blog.key.id}" class="layui-btn layui-btn-primary">删除博客</a>
+                            </div>
                         </div>
                         </div>
                         <div class="blog-block-tail">

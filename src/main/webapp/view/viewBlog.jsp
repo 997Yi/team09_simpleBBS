@@ -28,7 +28,7 @@
         </ul>
         <ul class="layui-nav layui-layout-right">
             <jstl:if test="${userInfo == null}">
-                <li class="layui-nav-item layui-this">
+                <li class="layui-nav-item">
                     <a href="${pageContext.request.contextPath}/login.jsp">
                         点击登录
                     </a>

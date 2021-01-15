@@ -46,7 +46,7 @@ public class PostBlogServlet extends HttpServlet {
 
         //将数据保存
         Blog blog = new Blog(title, keywords, new Date(),
-                1, content,false, false, user.getId());
+                0, content,false, false, user.getId());
         if(blogService.addBlogs(blog)){
             //添加成功
             session.setAttribute("msg", "添加成功");

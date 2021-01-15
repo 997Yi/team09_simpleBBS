@@ -86,7 +86,7 @@
                 <div class="layui-form-item">
                     <div class="layui-input-block" style="margin: 0px;">
                         <div class="upload-wrap anticon" nv-file-drop="" uploader="uploader">
-                            <input class="file-ele" type="file" file-model="image" name="image" nv-file-select uploader="uploader" multiple />
+                            <input class="file-ele" type="file" file-model="image" name="image" nv-file-select uploader="uploader" multiple accept="image/png, image/jpeg"/>
                             <div class="file-open"><em class="icon icon-upload"></em>&nbsp;修改头像</div>
                         </div>
                         <div class="show-img">

@@ -41,16 +41,24 @@ public class FileUtil {
     }
 
     public static List<String> readContent(String fileName) throws IOException {
-
-        BufferedReader reader = new BufferedReader(new FileReader(PATH + "/WEB-INF/content/"+ fileName));
-
         List<String> list = new ArrayList<>();
+        File file = new File(PATH + "/WEB-INF/content/"+ fileName);
+
+        if(!file.exists()){
+            return list;
+        }
+
+        BufferedReader reader = new BufferedReader(new FileReader(file));
         String line = null;
         while((line = reader.readLine()) != null){
             list.add(new String(line.getBytes(), "UTF-8"));
         }
 
         return list;
+    }
+
+    public static void deleteContent(String fileName){
+        deleteFile(PATH + "/WEB-INF/content/" + fileName);
     }
 
 
@@ -65,5 +73,18 @@ public class FileUtil {
 
     public static String getImg(String fileName){
         return "/image/" + fileName;
+    }
+
+
+    public static void deleteImg(String fileName){
+        deleteFile(PATH + "/image/" + fileName);
+    }
+
+    private static void deleteFile(String url){
+        File file = new File(url);
+
+        if(file.exists()){
+            file.delete();
+        }
     }
 }

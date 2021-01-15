@@ -8,6 +8,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadBase;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FileUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -70,8 +71,16 @@ public class ModifyUserServlet extends HttpServlet {
                 }else {
                     //保存
                     if(fileItem.getSize() != 0){
+                        //上传文件
+
+                        //如果原来存在头像，就将头像删除
+                        if(user.getImgUrl() != null){
+                            FileUtil.deleteImg(user.getImgUrl());
+                        }
                         user.setImgUrl(FileUtil.saveImg(fileItem));
                     }else{
+                        //不上传文件，需要正确的解析路径，再保存到数据库
+
                         user.setImgUrl(user.getImgUrl().split("/")[2]);
                     }
                 }
