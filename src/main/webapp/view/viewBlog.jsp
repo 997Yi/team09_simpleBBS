@@ -23,7 +23,7 @@
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/listBlog">主页</a></li>
-            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/lookBlog">精华帖</a></li>
+            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/listQuintBlogs">精华帖</a></li>
             <jstl:if test="${adminInfo != null}">
                 <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/view/admin/userList.jsp">用户列表</a></li>
             </jstl:if>
