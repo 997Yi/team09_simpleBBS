@@ -34,7 +34,7 @@ public class FileUtil {
         File file = new File(PATH + "/WEB-INF/content/" + fileName);
 
         FileWriter fileWriter = new FileWriter(file);
-        fileWriter.write(content);
+        fileWriter.write(new String(content.getBytes(), "utf-8"));
         fileWriter.close();
 
         return fileName;
