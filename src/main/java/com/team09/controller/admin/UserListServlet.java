@@ -20,8 +20,8 @@ public class UserListServlet extends HttpServlet {
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String sPage=req.getParameter("page");
         String sLimit=req.getParameter("limit");
-        int page = Integer.parseInt(sPage);
-        int pageSize = Integer.parseInt(sLimit);
+        int page = (sPage == null || sPage.isEmpty()) ? 1 : Integer.parseInt(sPage);
+        int pageSize = (sLimit == null || sLimit.isEmpty()) ? 10 : Integer.parseInt(sLimit);
 
 
         UserService userService=UserServiceImpl.getInstance();
