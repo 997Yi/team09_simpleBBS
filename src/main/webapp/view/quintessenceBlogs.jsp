@@ -94,10 +94,38 @@
                                 <div class="blog-user-name">
                                     <p>${blog.value.username}</p>
                                 </div>
-                            </div><div class="blog-info">
-                            <div class="blog-block-title"><a href="${pageContext.request.contextPath}/user/lookBlog?blogId=${blog.key.id}">${blog.key.title}</a></div>
-                            <div class="blog-block-keywords">${blog.key.keyWords}</div>
-                        </div>
+                            </div>
+                            <div class="blog-info">
+                                <div class="admin-button" style="float: right">
+                                    <jstl:if test="${adminInfo != null}">
+                                        <jstl:if test="${blog.key.top != true}">
+                                            <button type="button" class="layui-btn layui-btn-primary">
+                                                <a href="${pageContext.request.contextPath}/admin/top?blogId=${blog.key.id}&page=user/listQuintBlogs">置顶</a>
+                                            </button>
+                                        </jstl:if>
+                                        <jstl:if test="${blog.key.top == true}">
+                                            <button type="button" class="layui-btn layui-btn-primary" >
+                                                <a href="${pageContext.request.contextPath}/admin/top?blogId=${blog.key.id}&page=user/listQuintBlogs">取消置顶</a>
+                                            </button>
+                                        </jstl:if>
+                                        <jstl:if test="${blog.key.quintessence != true}">
+                                            <button type="button" class="layui-btn layui-btn-primary">
+                                                <a href="${pageContext.request.contextPath}/admin/quintessence?blogId=${blog.key.id}&page=user/listQuintBlogs">精华</a>
+                                            </button>
+                                        </jstl:if>
+                                        <jstl:if test="${blog.key.quintessence == true}">
+                                            <button type="button" class="layui-btn layui-btn-primary">
+                                                <a href="${pageContext.request.contextPath}/admin/quintessence?blogId=${blog.key.id}&page=user/listQuintBlogs">取消精华</a>
+                                            </button>
+                                        </jstl:if>
+                                        <button type="button" class="layui-btn layui-btn-primary">
+                                            <a href="${pageContext.request.contextPath}/admin/deleteBlog?blogId=${blog.key.id}&page=user/listQuintBlogs">删除</a>
+                                        </button>
+                                    </jstl:if>
+                                </div>
+                                <div class="blog-block-title"><a href="${pageContext.request.contextPath}/user/lookBlog?blogId=${blog.key.id}">${blog.key.title}</a></div>
+                                <div class="blog-block-keywords">${blog.key.keyWords}</div>
+                            </div>
                         </div>
                         <div class="blog-block-tail">
                             <div class="blog-block-time"><i class="layui-icon layui-icon-time"></i>${blog.key.time}</div>
