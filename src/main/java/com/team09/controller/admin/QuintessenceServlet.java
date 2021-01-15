@@ -17,9 +17,16 @@ public class QuintessenceServlet extends HttpServlet {
         BlogService blogService = BlogServiceImpl.getInstance();
         String blogId = request.getParameter("blogId");
 
-        Blog blog = blogService.getBlogById(blogId);
-        blog.setQuintessence(true);
-        blogService.updateBlogs(blog);
+        if (blogId == null || blogId.isEmpty()){
+            return;
+        }else {
+            Blog blog = blogService.getBlogById(blogId);
+            blog.setQuintessence(!blog.isQuintessence());
+            blogService.updateBlogs(blog);
+        }
+
+        String page = request.getParameter("page");
+        response.sendRedirect(request.getContextPath() + "/" + page);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

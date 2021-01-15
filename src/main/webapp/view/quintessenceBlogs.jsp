@@ -24,10 +24,15 @@
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/listBlog">主页</a></li>
             <li class="layui-nav-item layui-this"><a href="${pageContext.request.contextPath}/view/quintessenceBlogs.jsp">精华帖</a></li>
-            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/view/postBlog.jsp">发布博客</a></li>
+            <jstl:if test="${adminInfo != null}">
+                <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/view/admin/userList.jsp">用户列表</a></li>
+            </jstl:if>
+            <jstl:if test="${adminInfo == null}">
+                <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/view/postBlog.jsp">发布博客</a></li>
+            </jstl:if>
         </ul>
         <ul class="layui-nav layui-layout-right">
-            <jstl:if test="${userInfo == null}">
+            <jstl:if test="${userInfo == null && adminInfo == null}">
                 <li class="layui-nav-item">
                     <a href="${pageContext.request.contextPath}/login.jsp">
                         点击登录
@@ -49,6 +54,15 @@
                         <dd><a href="${pageContext.request.contextPath}/view/modifyInfo.jsp">修改信息</a></dd>
                         <dd><a href="${pageContext.request.contextPath}/user/listBlog?id=${userInfo.id}">查看我的博客</a></dd>
                     </dl>
+                </li>
+                <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
+            </jstl:if>
+            <jstl:if test="${adminInfo != null}">
+                <li class="layui-nav-item">
+                    <a href="javascript:;">
+                        <img src="${pageContext.request.contextPath}/image/default.png" class="layui-nav-img">
+                        管理员：${adminInfo.username}
+                    </a>
                 </li>
                 <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/logout">退出登录</a></li>
             </jstl:if>

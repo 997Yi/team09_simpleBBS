@@ -17,9 +17,16 @@ public class TopServlet extends HttpServlet {
         BlogService blogService = BlogServiceImpl.getInstance();
         String blogId = request.getParameter("blogId");
 
-        Blog blog = blogService.getBlogById(blogId);
-        blog.setTop(true);
-        blogService.updateBlogs(blog);
+        if (blogId == null || blogId.isEmpty()){
+
+        }else {
+            Blog blog = blogService.getBlogById(blogId);
+            blog.setTop(!blog.isTop());
+            blogService.updateBlogs(blog);
+        }
+
+        String page = request.getParameter("page");
+        response.sendRedirect(request.getContextPath() + "/" + page);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
