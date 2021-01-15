@@ -32,10 +32,9 @@ public class FileUtil {
     public static String writeContent(String content) throws IOException {
         String fileName = System.currentTimeMillis() + ".txt";
         File file = new File(PATH + "/WEB-INF/content/" + fileName);
-
-        FileWriter fileWriter = new FileWriter(file);
-        fileWriter.write(new String(content.getBytes(), "utf-8"));
-        fileWriter.close();
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
+        writer.write(content);
+        writer.flush();
 
         return fileName;
     }
@@ -48,10 +47,11 @@ public class FileUtil {
             return list;
         }
 
-        BufferedReader reader = new BufferedReader(new FileReader(file));
+        BufferedReader reader=new BufferedReader(new InputStreamReader(new FileInputStream(file),"UTF-8"));
+
         String line = null;
         while((line = reader.readLine()) != null){
-            list.add(new String(line.getBytes(), "UTF-8"));
+            list.add(line);
         }
 
         return list;

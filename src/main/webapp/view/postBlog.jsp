@@ -100,6 +100,12 @@
 
     });
 </script>
+<jstl:if test="${msg != null}">
+    <script>
+        alert("${msg}");
+    </script>
+    <% session.removeAttribute("msg"); %>
+</jstl:if>
 </body>
 </html>
 
