@@ -17,8 +17,13 @@ public class DeleteBlogServlet extends HttpServlet {
         BlogService blogService = BlogServiceImpl.getInstance();
         String blogId = request.getParameter("blogId");
 
-        Blog blog = blogService.getBlogById(blogId);
-        blogService.deleteBlogs(blog);
+        if (blogId == null || blogId.isEmpty()){
+            return;
+        }else {
+            Blog blog = blogService.getBlogById(blogId);
+            blogService.deleteBlogs(blog);
+        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
