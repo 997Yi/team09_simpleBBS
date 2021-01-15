@@ -23,7 +23,7 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <img src="${pageContext.request.contextPath}/image/default.png" class="layui-nav-img">
-                    ${adminInfo.username}
+                    管理员：${adminInfo.username}
                 </a>
             </li>
             <li class="layui-nav-item"><a href="logout">退出登录</a></li>
