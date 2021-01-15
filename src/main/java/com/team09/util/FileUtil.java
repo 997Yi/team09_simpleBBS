@@ -48,7 +48,6 @@ public class FileUtil {
         String line = null;
         while((line = reader.readLine()) != null){
             list.add(new String(line.getBytes(), "UTF-8"));
-            list.add(line);
         }
 
         return list;
