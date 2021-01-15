@@ -17,7 +17,7 @@
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/index.jsp">主页</a></li>
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/view/quintessenceBlogs.jsp">精华帖</a></li>
-            <li class="layui-nav-item layui-this"><a href="#">用户列表</a></li>
+            <li class="layui-nav-item layui-this"><a href="${pageContext.request.contextPath}/view/admin/userList.jsp">用户列表</a></li>
         </ul>
         <ul class="layui-nav layui-layout-right">
             <li class="layui-nav-item">

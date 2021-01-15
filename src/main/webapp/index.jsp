@@ -30,10 +30,15 @@
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item  layui-this"><a href="${pageContext.request.contextPath}/user/listBlog">主页</a></li>
             <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/user/listQuintBlogs">精华帖</a></li>
-            <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/view/postBlog.jsp">发布博客</a></li>
+            <jstl:if test="${adminInfo != null}">
+                <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/view/admin/userList.jsp">用户列表</a></li>
+            </jstl:if>
+            <jstl:if test="${adminInfo == null}">
+                <li class="layui-nav-item"><a href="${pageContext.request.contextPath}/view/postBlog.jsp">发布博客</a></li>
+            </jstl:if>
         </ul>
         <ul class="layui-nav layui-layout-right">
-            <jstl:if test="${userInfo == null}">
+            <jstl:if test="${userInfo == null && adminInfo == null}">
                 <li class="layui-nav-item">
                     <a href="${pageContext.request.contextPath}/login.jsp">
                         点击登录
