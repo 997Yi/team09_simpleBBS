@@ -50,7 +50,7 @@ public class ListQuintBlogsServlet extends HttpServlet {
         List<Blog> quintBlogs = blogService.getQuintBlogs();
 
         if(pageNum - 1 > quintBlogs.size() / 5){
-            session.setAttribute("mag", "非法分页参数");
+            session.setAttribute("msg", "非法分页参数");
             req.getRequestDispatcher(req.getContextPath() + "/user/listBlog").forward(req, resp);
             return;
         }
